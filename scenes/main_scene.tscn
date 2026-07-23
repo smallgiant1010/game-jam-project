@@ -1,10 +1,15 @@
 [gd_scene format=3 uid="uid://bxgmjh3g3rsiw"]
 
 [ext_resource type="PackedScene" uid="uid://cb0ur3vdf28xq" path="res://scenes/player.tscn" id="1_w2twt"]
+[ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="2_pw63i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xayay"]
+size = Vector2(124, 124)
 
 [node name="MainScene" type="Node2D" unique_id=1865833004]
 
 [node name="Control" type="Control" parent="." unique_id=755934538]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 2760.0
@@ -17,4 +22,18 @@ offset_bottom = 1600.0
 color = Color(0.4392157, 0.5568628, 0.18039216, 1)
 
 [node name="Player" parent="." unique_id=242718590 instance=ExtResource("1_w2twt")]
-position = Vector2(656, 418)
+position = Vector2(-259, 360)
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=753476646]
+
+[node name="TEST OBJESCT" type="Area2D" parent="." unique_id=1451501898]
+collision_layer = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="TEST OBJESCT" unique_id=160854561]
+modulate = Color(0.27058825, 0.40784314, 1, 1)
+texture = ExtResource("2_pw63i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TEST OBJESCT" unique_id=1185970660]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_xayay")
+debug_color = Color(0.8394357, 0.37986815, 0.16850898, 0.41960785)

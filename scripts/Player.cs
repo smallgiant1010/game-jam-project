@@ -3,7 +3,14 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
-	private int speed = 130;
+	private int speed = 250;
+	private RayCast2D raycast;
+	[Export] public int health = 100; // patience
+	public override void _Ready()
+	{
+		raycast = GetNode<RayCast2D>("RayCast2D");
+		GD.Print(raycast);
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -28,7 +35,18 @@ public partial class Player : CharacterBody2D
 		{
 			direction.Y -= 1;
 		}
-		GD.Print(Position);
+
+		if (Input.IsActionJustPressed("interact"))
+		{
+			GD.Print(raycast.IsColliding());
+			if (raycast.IsColliding())
+			{
+				var collider = raycast.GetCollider();
+				GD.Print(collider);
+			}
+			GD.Print("interacting");
+		}
+		// GD.Print(Position);
 		Velocity = direction.Normalized() * speed;
 		MoveAndSlide();
 	}

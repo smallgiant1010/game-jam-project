@@ -1,26 +1,39 @@
 [gd_scene format=3 uid="uid://cb0ur3vdf28xq"]
 
 [ext_resource type="Script" uid="uid://ch7esykoj1x1l" path="res://scripts/Player.cs" id="1_3vyb7"]
-[ext_resource type="Script" uid="uid://cw7jwlpom46on" path="res://scripts/PlayerCamera.cs" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="2_qhqgy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kyxod"]
 radius = 24.0
 height = 120.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y3ltu"]
+radius = 24.0
+height = 120.0
+
 [node name="Player" type="CharacterBody2D" unique_id=1643606880]
 script = ExtResource("1_3vyb7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=213046018]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=344455426]
+position = Vector2(0, 1.499999)
+scale = Vector2(0.359375, 0.9140625)
+texture = ExtResource("2_qhqgy")
+
+[node name="hitbox" type="CollisionShape2D" parent="." unique_id=213046018]
 shape = SubResource("CapsuleShape2D_kyxod")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=30067753]
-remote_path = NodePath("../Camera2D")
 update_rotation = false
 update_scale = false
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=801543453]
-script = ExtResource("2_g2els")
+[node name="hurtbox" type="Area2D" parent="." unique_id=245300293]
+collision_layer = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=344455426]
-texture = ExtResource("2_qhqgy")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox" unique_id=1257168568]
+shape = SubResource("CapsuleShape2D_y3ltu")
+debug_color = Color(0.8358007, 0.35688683, 0.4111688, 0.41960785)
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=348714379]
+target_position = Vector2(64, 0)
+collision_mask = 4
+collide_with_areas = true
