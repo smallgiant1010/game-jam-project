@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cb0ur3vdf28xq"]
 
+[ext_resource type="Script" uid="uid://ch7esykoj1x1l" path="res://scripts/Player.cs" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cw7jwlpom46on" path="res://scripts/PlayerCamera.cs" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="2_qhqgy"]
 
@@ -8,6 +9,7 @@ radius = 24.0
 height = 120.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1643606880]
+script = ExtResource("1_3vyb7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=213046018]
 shape = SubResource("CapsuleShape2D_kyxod")
