@@ -1,24 +1,24 @@
 [gd_scene format=3 uid="uid://cb0ur3vdf28xq"]
 
-[ext_resource type="Script" uid="uid://ch7esykoj1x1l" path="res://scripts/Player.cs" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cw7jwlpom46on" path="res://scripts/PlayerCamera.cs" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="2_qhqgy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kyxod"]
 radius = 24.0
 height = 120.0
 
-[node name="Player" type="Node2D" unique_id=242718590]
+[node name="Player" type="CharacterBody2D" unique_id=1643606880]
 
-[node name="PlayerBody" type="StaticBody2D" parent="." unique_id=2033156052]
-script = ExtResource("1_3vyb7")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBody" unique_id=213046018]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=213046018]
 shape = SubResource("CapsuleShape2D_kyxod")
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PlayerBody" unique_id=30067753]
-remote_path = NodePath("../../Camera2D")
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=30067753]
+remote_path = NodePath("../Camera2D")
 update_rotation = false
 update_scale = false
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=801543453]
 script = ExtResource("2_g2els")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=344455426]
+texture = ExtResource("2_qhqgy")
