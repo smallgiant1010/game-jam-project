@@ -1,3 +1,56 @@
-[gd_scene format=3 uid="uid://ddmh2a206x0t7"]
+[gd_scene format=3 uid="uid://clb7jtnwrlvgo"]
 
-[node name="Karen" type="Node2D" unique_id=139734232]
+[ext_resource type="Script" uid="uid://dvonvn3gyu17g" path="res://scripts/Entities/Karen.cs" id="2_2ylbg"]
+[ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="2_bhr88"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xayay"]
+size = Vector2(15, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_md0e3"]
+radius = 43.104523
+
+[node name="karen" type="CharacterBody2D" unique_id=859042563 node_paths=PackedStringArray("goal", "navi", "aoe")]
+script = ExtResource("2_2ylbg")
+goal = NodePath("Area2D")
+navi = NodePath("NavigationAgent2D")
+aoe = NodePath("Area2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1681358200]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_xayay")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=312614072]
+modulate = Color(0.13725491, 0.043137256, 1, 1)
+position = Vector2(1.9073486e-06, -1.9073486e-06)
+scale = Vector2(0.15625, 0.15625)
+texture = ExtResource("2_bhr88")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1825357227]
+editor_description = "NOT ALL ENEMIES USE THIS, JUST FOR CONVENIENCE"
+collision_layer = 2
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=871883465]
+shape = SubResource("CircleShape2D_md0e3")
+debug_color = Color(0.8177959, 0.34015176, 0.5762501, 0.41960785)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=2133774130]
+path_desired_distance = 3.0
+target_desired_distance = 3.0
+path_postprocessing = 1
+debug_enabled = true
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1462810622]
+target_position = Vector2(150, 0)
+
+[node name="aggro" type="Timer" parent="." unique_id=142111285]
+wait_time = 10.0
+
+[node name="nav" type="Timer" parent="." unique_id=776693085]
+wait_time = 2.0
+autostart = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="timeout" from="aggro" to="." method="_on_aggro_timeout"]
+[connection signal="timeout" from="nav" to="." method="_on_nav_timeout"]

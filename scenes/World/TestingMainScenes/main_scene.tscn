@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://bxgmjh3g3rsiw"]
 
-[ext_resource type="PackedScene" uid="uid://clb7jtnwrlvgo" path="res://scenes/karen.tscn" id="1_pu3yx"]
-[ext_resource type="PackedScene" uid="uid://cb0ur3vdf28xq" path="res://scenes/player.tscn" id="1_w2twt"]
-[ext_resource type="PackedScene" uid="uid://bw582k0vtrrvx" path="res://scenes/lounge.tscn" id="3_7ykc4"]
-[ext_resource type="PackedScene" uid="uid://cbk72o4dkjuaa" path="res://scenes/dog_poop.tscn" id="3_pu3yx"]
-[ext_resource type="PackedScene" uid="uid://cfaawye43obvj" path="res://scenes/navi_node.tscn" id="5_gubc5"]
+[ext_resource type="PackedScene" uid="uid://clb7jtnwrlvgo" path="res://scenes/Entities/karen.tscn" id="1_nrhmi"]
+[ext_resource type="PackedScene" uid="uid://cb0ur3vdf28xq" path="res://scenes/Entities/player.tscn" id="2_xaef2"]
+[ext_resource type="PackedScene" uid="uid://cbk72o4dkjuaa" path="res://scenes/Misc/dog_poop.tscn" id="3_vw7pp"]
+[ext_resource type="PackedScene" uid="uid://bw582k0vtrrvx" path="res://scenes/World/lounge.tscn" id="4_upn8w"]
+[ext_resource type="PackedScene" uid="uid://cfaawye43obvj" path="res://scenes/Misc/navi_node.tscn" id="5_rygdc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y3ltu"]
 size = Vector2(20, 378)
@@ -17,8 +17,8 @@ agent_radius = 5.0
 
 [node name="MainScene" type="Node2D" unique_id=1865833004]
 
-[node name="karen" parent="." unique_id=859042563 instance=ExtResource("1_pu3yx")]
-position = Vector2(-100, 200)
+[node name="enemy" parent="." unique_id=859042563 instance=ExtResource("1_nrhmi")]
+position = Vector2(-400, 193)
 scale = Vector2(3, 3)
 
 [node name="Control" type="Control" parent="." unique_id=755934538]
@@ -34,12 +34,12 @@ offset_right = 2760.0
 offset_bottom = 1600.0
 color = Color(0.4392157, 0.5568628, 0.18039216, 1)
 
-[node name="Player" parent="." unique_id=242718590 instance=ExtResource("1_w2twt")]
+[node name="Player" parent="." unique_id=242718590 instance=ExtResource("2_xaef2")]
 position = Vector2(-259, 360)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=753476646]
 
-[node name="DOG POOP" parent="." unique_id=1630781396 instance=ExtResource("3_pu3yx")]
+[node name="DOG POOP" parent="." unique_id=1630781396 instance=ExtResource("3_vw7pp")]
 position = Vector2(-100, 0)
 
 [node name="TEST WALL" type="StaticBody2D" parent="." unique_id=49585962]
@@ -48,7 +48,7 @@ position = Vector2(-100, 0)
 position = Vector2(223, 165)
 shape = SubResource("RectangleShape2D_y3ltu")
 
-[node name="Lounge" parent="." unique_id=480305563 instance=ExtResource("3_7ykc4")]
+[node name="Lounge" parent="." unique_id=480305563 instance=ExtResource("4_upn8w")]
 position = Vector2(-217, -91)
 collision_mask = 16
 
@@ -57,8 +57,8 @@ navigation_polygon = SubResource("NavigationPolygon_xayay")
 
 [node name="navi nodes" type="Node2D" parent="NavigationRegion2D" unique_id=1468633262]
 
-[node name="naviNode2" parent="NavigationRegion2D/navi nodes" unique_id=1011454801 instance=ExtResource("5_gubc5")]
+[node name="naviNode2" parent="NavigationRegion2D/navi nodes" unique_id=1011454801 instance=ExtResource("5_rygdc")]
 position = Vector2(-654, 631)
 
-[node name="naviNode" parent="NavigationRegion2D/navi nodes" unique_id=426943225 instance=ExtResource("5_gubc5")]
+[node name="naviNode" parent="NavigationRegion2D/navi nodes" unique_id=426943225 instance=ExtResource("5_rygdc")]
 position = Vector2(-644, 209)

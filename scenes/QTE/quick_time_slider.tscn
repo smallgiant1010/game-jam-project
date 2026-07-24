@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://djr14i1gko7ia"]
+
+[ext_resource type="Script" uid="uid://u4aqya5mvqty" path="res://scripts/UIRelated/QuickTimeSlider.cs" id="1_vqrce"]
+
+[node name="Quick Time Slider" type="Control" unique_id=1959004726 node_paths=PackedStringArray("wholeZone_", "validZone_", "cursor_")]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vqrce")
+wholeZone_ = NodePath("WholeZone")
+validZone_ = NodePath("ValidZone")
+cursor_ = NodePath("Cursor")
+
+[node name="WholeZone" type="ColorRect" parent="." unique_id=836470261]
+layout_mode = 0
+offset_left = -400.0
+offset_right = 400.0
+offset_bottom = 40.0
+color = Color(0.885057, 0.531213, 0.34018737, 1)
+
+[node name="ValidZone" type="ColorRect" parent="." unique_id=747508062]
+layout_mode = 0
+offset_left = -400.0
+offset_right = -320.00006
+offset_bottom = 40.0
+color = Color(0.12458078, 0.61054844, 1.540184e-06, 1)
+
+[node name="Cursor" type="ColorRect" parent="." unique_id=1398689807]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 40.0

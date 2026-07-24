@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://cfaawye43obvj"]
+[gd_scene format=3 uid="uid://cpjsfc028e534"]
 
-[ext_resource type="Script" uid="uid://d01s7di5gfyjd" path="res://scripts/NaviNode.cs" id="1_7a0d6"]
+[ext_resource type="Script" path="res://scripts/NaviNode.cs" id="1_7a0d6"]
 
 [node name="naviNode" type="Node2D" unique_id=1011454801]
 modulate = Color(0.16862746, 0.49019608, 1, 1)

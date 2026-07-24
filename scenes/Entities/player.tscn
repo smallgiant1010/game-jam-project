@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://tplo54fw4f77"]
+[gd_scene format=3 uid="uid://cb0ur3vdf28xq"]
 
-[ext_resource type="Script" path="res://scripts/Player.cs" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://ch7esykoj1x1l" path="res://scripts/Entities/Player.cs" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="2_qhqgy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kyxod"]
@@ -13,10 +13,6 @@ height = 120.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1643606880]
 script = ExtResource("1_3vyb7")
-health = null
-maxHealth = null
-decay = null
-isStunned = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=344455426]
 position = Vector2(0, 1.499999)
