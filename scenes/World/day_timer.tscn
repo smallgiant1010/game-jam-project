@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://m64ir6nacom7"]
+
+[ext_resource type="Script" uid="uid://wtakh4mp6f00" path="res://scripts/DayTimer.cs" id="1_y7xpo"]
+
+[node name="DayTimer" type="Timer" unique_id=763238888]
+script = ExtResource("1_y7xpo")
