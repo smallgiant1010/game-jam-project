@@ -7,6 +7,7 @@ public partial class VendingMachine : BreakableInteractive
 	public override void _Ready()
 	{
 		base._Ready();
+		assignedTask = Task.FixVendingMachine;
 	}
 
 	private void OnPlayerInteraction()
