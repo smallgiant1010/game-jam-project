@@ -47,8 +47,14 @@ public partial class Karen : Enemy
 
 	private void _on_nav_timeout()
 	{
-		if (navi.TargetPosition != goal.GlobalPosition) navi.TargetPosition = goal.GlobalPosition;
-		if (goal is not Player && navi.TargetPosition == goal.GlobalPosition) getRandNode(); // move somewhere else, lingering is intentional if the enemy draws the same node again
+		if (goal is Player)
+		{
+			navi.TargetPosition = goal.GlobalPosition; // keep tracking player position
+		}
+		else if (navi.IsNavigationFinished())
+		{
+			getRandNode(); // only pick a new wander point once actually arrived
+		}
 	}
 
 	private void _on_area_2d_area_entered(Area2D area)

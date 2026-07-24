@@ -15,4 +15,9 @@ public partial class Aisle : Node2D
 	{
 		productCount += amount;
 	}
+
+	public void interact()
+	{
+		GD.Print("restocking");
+	}
 }

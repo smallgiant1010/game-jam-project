@@ -3,15 +3,15 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
-	private int speed = 500;
+	[Export] public int speed = 500;
 	[Export] public float health = 100; // patience
 	[Export] public float maxHealth = 100; // patience
-
+	[Export] public bool isStunned = false;
 	[Export] public float decay = 1;
+	[Export] public int live = 3;
 	private RayCast2D raycast;
 	private Timer stunTimer;
 	private Area2D hurtbox;
-	[Export] public bool isStunned = false;
 	public override void _Ready()
 	{
 		raycast = GetNode<RayCast2D>("RayCast2D");
@@ -37,13 +37,13 @@ public partial class Player : CharacterBody2D
 		// pause if ur in lounge
 
 		health -= 1 * decay;
-		GD.Print(decay);
+		// GD.Print(decay);
 	}
 	public override void _Process(double delta)
 	{
 		if (health > maxHealth) health = maxHealth; // health capped
 
-		if (health <= 0) GD.Print("you lost lmao what a loser");
+		if (health <= 0) GD.Print("you lost lmao what a loser"); // transform
 
 		if (Input.IsActionJustPressed("interact"))
 		{
@@ -51,6 +51,8 @@ public partial class Player : CharacterBody2D
 			if (raycast.IsColliding())
 			{
 				var collider = raycast.GetCollider();
+				if (collider is Aisle a) a.interact();
+				// else if (collider is Fridge b) b.
 				GD.Print(collider);
 			}
 		}
