@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bw582k0vtrrvx"]
+
+[ext_resource type="Script" uid="uid://beqkf5yhhfusb" path="res://scripts/Lounge.cs" id="1_8r12j"]
+[ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="2_fc38y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q17hq"]
+size = Vector2(119, 122)
+
+[node name="Lounge" type="Area2D" unique_id=480305563]
+z_index = -1
+collision_layer = 8
+script = ExtResource("1_8r12j")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1089016170]
+position = Vector2(-218, 168)
+texture = ExtResource("2_fc38y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1556685301]
+position = Vector2(-217.5, 168)
+shape = SubResource("RectangleShape2D_q17hq")
+
+[node name="Timer" type="Timer" parent="." unique_id=341367519]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

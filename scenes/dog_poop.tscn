@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cbk72o4dkjuaa"]
+
+[ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="1_gv3y3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xayay"]
+size = Vector2(124, 124)
+
+[node name="DOG POOP" type="Area2D" unique_id=1630781396]
+editor_description = "interactable hazard, i.e dog shit"
+collision_layer = 6
+collision_mask = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1517049386]
+modulate = Color(0.27058825, 0.40784314, 1, 1)
+texture = ExtResource("1_gv3y3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1805122650]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_xayay")
+debug_color = Color(0.8394357, 0.37986815, 0.16850898, 0.41960785)
