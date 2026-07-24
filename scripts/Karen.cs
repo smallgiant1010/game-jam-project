@@ -9,7 +9,6 @@ public partial class Karen : Enemy
 	public override void _Ready()
 	{
 		base._Ready();
-		aoe.AreaEntered += _on_area_2d_area_entered;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -53,11 +52,20 @@ public partial class Karen : Enemy
 
 	private void _on_area_2d_area_entered(Area2D area)
 	{
-		GD.Print("Duelist Dash > Rapier m2 > Auto Reload > Bullseye > Duelist Dash > Bullseye > Needles eye");
+		GD.Print("Entered by: ", area.Name, " | Parent: ", area.GetParent().Name);
 		if (area.GetParent() is Player player)
 		{
 			player.decay += 1;
+			GD.Print("Decay now: ", player.decay);
 		}
-		
+	}
+
+	private void _on_area_2d_area_exited(Area2D area)
+	{
+		if (area.GetParent() is Player player)
+		{
+			player.decay -= 1;
+			GD.Print("Decay now: ", player.decay);
+		}
 	}
 }
