@@ -32,11 +32,28 @@ public partial class Enemy : CharacterBody2D
 		// market.instance.RemoveEnemy(id) when enemy leaves
 	}
 
+	public override void _PhysicsProcess(double delta)
+	{
+		if (navi.IsNavigationFinished())
+		{
+			Velocity = Vector2.Zero;
+			MoveAndSlide(); // keep this so it settles/resolves collisions properly, doesn't just freeze mid-air
+		}
+		else
+		{
+			Vector2 nextPathPosition = navi.GetNextPathPosition();
+			Vector2 direction = (nextPathPosition - GlobalPosition).Normalized();
+			Velocity = direction * Speed;
+			MoveAndSlide();
+		}
+	}
+
+
 	public void getRandNode()
 	{
 		Random rnd = new Random();
 		goal = navNodes[rnd.Next(0, navNodes.Count)];
-		navi.TargetPosition = goal.GlobalPosition; 
+		navi.TargetPosition = goal.GlobalPosition;
 		GD.Print(goal);
 	}
 }
