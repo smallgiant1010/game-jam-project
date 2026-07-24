@@ -22,12 +22,8 @@ texture = ExtResource("2_qhqgy")
 [node name="hitbox" type="CollisionShape2D" parent="." unique_id=213046018]
 shape = SubResource("CapsuleShape2D_kyxod")
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=30067753]
-update_rotation = false
-update_scale = false
-
 [node name="hurtbox" type="Area2D" parent="." unique_id=245300293]
-collision_layer = 2
+collision_layer = 16
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox" unique_id=1257168568]

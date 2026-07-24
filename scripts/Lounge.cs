@@ -8,7 +8,7 @@ public partial class Lounge : Area2D
 	private Player player;
 	public override void _Ready()
 	{
-		GD.Print("Detector ready");
+		// GD.Print("Detector ready");
 		BodyEntered += _on_lounge_body_entered; // cannot detect without it
 		BodyExited += _on_lounge_body_exited; // cannot detect without it
 

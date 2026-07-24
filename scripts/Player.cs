@@ -18,14 +18,14 @@ public partial class Player : CharacterBody2D
 		stunTimer = GetNode<Timer>("StunTimer");
 		hurtbox = GetNode<Area2D>("hurtbox");
 	}
-	private void _on_hurtbox_area_entered(Node2D body) // CHECK OBJECT NAME FIRST, FOR NOW IT WILL ALWAYS PERMA STUN
-	{
-		isStunned = true;
-		hurtbox.SetDeferred("monitoring", false);
+	// private void _on_hurtbox_area_entered(Node2D body) // CHECK OBJECT NAME FIRST, FOR NOW IT WILL ALWAYS PERMA STUN
+	// {
+	// 	isStunned = true;
+	// 	hurtbox.SetDeferred("monitoring", false);
 
-		stunTimer.Start();
-		GD.Print(body.Name + " entered");
-	}
+	// 	stunTimer.Start();
+	// 	GD.Print(body.Name + " entered");
+	// }
 	private void _on_stun_timer_timeout()
 	{
 		isStunned = false;
@@ -35,15 +35,26 @@ public partial class Player : CharacterBody2D
 	private void _on_patience_decay_timeout()
 	{
 		// pause if ur in lounge
+
 		health -= 1 * decay;
-		GD.Print(health);
+		GD.Print(decay);
 	}
-  public override void _Process(double delta)
-  {
-    if (health > maxHealth) health = maxHealth; // health capped
+	public override void _Process(double delta)
+	{
+		if (health > maxHealth) health = maxHealth; // health capped
 
 		if (health <= 0) GD.Print("you lost lmao what a loser");
-  }
+
+		if (Input.IsActionJustPressed("interact"))
+		{
+			GD.Print(raycast.IsColliding());
+			if (raycast.IsColliding())
+			{
+				var collider = raycast.GetCollider();
+				GD.Print(collider);
+			}
+		}
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -76,16 +87,6 @@ public partial class Player : CharacterBody2D
 				raycast.TargetPosition = new Vector2(0, -96);
 
 				direction.Y -= 1;
-			}
-
-			if (Input.IsActionJustPressed("interact"))
-			{
-				GD.Print(raycast.IsColliding());
-				if (raycast.IsColliding())
-				{
-					var collider = raycast.GetCollider();
-					GD.Print(collider);
-				}
 			}
 			// GD.Print(Position);
 			Velocity = direction.Normalized() * speed;

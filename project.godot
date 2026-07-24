@@ -56,9 +56,10 @@ interact={
 [layer_names]
 
 2d_physics/layer_1="Collision"
-2d_physics/layer_2="Hurtbox"
+2d_physics/layer_2="Hazard"
 2d_physics/layer_3="Interactables"
 2d_physics/layer_4="Lounge"
+2d_physics/layer_5="Player"
 
 [physics]
 
