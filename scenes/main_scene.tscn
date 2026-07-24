@@ -6,6 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xayay"]
 size = Vector2(124, 124)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y3ltu"]
+size = Vector2(20, 378)
+
 [node name="MainScene" type="Node2D" unique_id=1865833004]
 
 [node name="Control" type="Control" parent="." unique_id=755934538]
@@ -26,14 +29,22 @@ position = Vector2(-259, 360)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=753476646]
 
-[node name="TEST OBJESCT" type="Area2D" parent="." unique_id=1451501898]
-collision_layer = 4
+[node name="DOG POOP" type="Area2D" parent="." unique_id=1451501898]
+editor_description = "interactable hazard, i.e dog shit"
+collision_layer = 6
+collision_mask = 6
 
-[node name="Sprite2D" type="Sprite2D" parent="TEST OBJESCT" unique_id=160854561]
+[node name="Sprite2D" type="Sprite2D" parent="DOG POOP" unique_id=160854561]
 modulate = Color(0.27058825, 0.40784314, 1, 1)
 texture = ExtResource("2_pw63i")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TEST OBJESCT" unique_id=1185970660]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DOG POOP" unique_id=1185970660]
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_xayay")
 debug_color = Color(0.8394357, 0.37986815, 0.16850898, 0.41960785)
+
+[node name="TEST WALL" type="StaticBody2D" parent="." unique_id=49585962]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TEST WALL" unique_id=1216212952]
+position = Vector2(223, 165)
+shape = SubResource("RectangleShape2D_y3ltu")

@@ -3,51 +3,76 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
-	private int speed = 250;
+	private int speed = 500;
 	private RayCast2D raycast;
+	private Timer stunTimer;
+	private Area2D hurtbox;
 	[Export] public int health = 100; // patience
+	[Export] public bool isStunned = false;
 	public override void _Ready()
 	{
 		raycast = GetNode<RayCast2D>("RayCast2D");
-		GD.Print(raycast);
+		stunTimer = GetNode<Timer>("StunTimer");
+		hurtbox = GetNode<Area2D>("hurtbox");
 	}
+	private void _on_hurtbox_area_entered(Node2D body) // CHECK OBJECT NAME FIRST, FOR NOW IT WILL ALWAYS PERMA STUN
+	{
+		// isStunned = true;
+		hurtbox.SetDeferred("monitoring", false);
 
+		stunTimer.Start();
+		GD.Print(body.Name + " entered");
+	}
+	private void _on_stun_timer_timeout()
+	{
+		isStunned = false;
+		hurtbox.SetDeferred("monitoring", true);
+	}
 	public override void _PhysicsProcess(double delta)
 	{
-		Vector2 direction = Vector2.Zero;
-
-		if (Input.IsActionPressed("move_right"))
+		if (!isStunned)
 		{
-			direction.X += 1;
-		}
+			Vector2 direction = Vector2.Zero;
 
-		if (Input.IsActionPressed("move_left"))
-		{
-			direction.X -= 1;
-		}
-
-		if (Input.IsActionPressed("move_down"))
-		{
-			direction.Y += 1;
-		}
-
-		if (Input.IsActionPressed("move_up"))
-		{
-			direction.Y -= 1;
-		}
-
-		if (Input.IsActionJustPressed("interact"))
-		{
-			GD.Print(raycast.IsColliding());
-			if (raycast.IsColliding())
+			if (Input.IsActionPressed("move_right"))
 			{
-				var collider = raycast.GetCollider();
-				GD.Print(collider);
+				raycast.TargetPosition = new Vector2(64, 0);
+				direction.X += 1;
 			}
-			GD.Print("interacting");
+
+			if (Input.IsActionPressed("move_left"))
+			{
+				raycast.TargetPosition = new Vector2(-64, 0);
+
+				direction.X -= 1;
+			}
+
+			if (Input.IsActionPressed("move_down"))
+			{
+				raycast.TargetPosition = new Vector2(0, 96); // player is taller than they are wide, raycast extended to compensate
+
+				direction.Y += 1;
+			}
+
+			if (Input.IsActionPressed("move_up"))
+			{
+				raycast.TargetPosition = new Vector2(0, -96);
+
+				direction.Y -= 1;
+			}
+
+			if (Input.IsActionJustPressed("interact"))
+			{
+				GD.Print(raycast.IsColliding());
+				if (raycast.IsColliding())
+				{
+					var collider = raycast.GetCollider();
+					GD.Print(collider);
+				}
+			}
+			// GD.Print(Position);
+			Velocity = direction.Normalized() * speed;
+			MoveAndSlide();
 		}
-		// GD.Print(Position);
-		Velocity = direction.Normalized() * speed;
-		MoveAndSlide();
 	}
 }

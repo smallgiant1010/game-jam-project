@@ -28,6 +28,7 @@ update_scale = false
 
 [node name="hurtbox" type="Area2D" parent="." unique_id=245300293]
 collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox" unique_id=1257168568]
 shape = SubResource("CapsuleShape2D_y3ltu")
@@ -37,3 +38,9 @@ debug_color = Color(0.8358007, 0.35688683, 0.4111688, 0.41960785)
 target_position = Vector2(64, 0)
 collision_mask = 4
 collide_with_areas = true
+
+[node name="StunTimer" type="Timer" parent="." unique_id=2069087215]
+one_shot = true
+
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
