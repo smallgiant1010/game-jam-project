@@ -4,7 +4,6 @@ using System;
 public partial class Karen : Enemy
 {
 	// Called when the node enters the scene tree for the first time.
-	private bool inSight = false;
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Ready()
 	{
@@ -19,35 +18,37 @@ public partial class Karen : Enemy
 			if (collider is Player player)
 			{
 				aggro.Start();
-				inSight = true;
+				aoe.SetDeferred("monitoring", true);
 				goal = player;
-				// begin chase on player
+				navi.TargetPosition = goal.GlobalPosition;
 			}
 		}
 
-		if (inSight)
+		if (navi.IsNavigationFinished())
+		{
+			Velocity = Vector2.Zero;
+			MoveAndSlide(); // keep this so it settles/resolves collisions properly, doesn't just freeze mid-air
+		}
+		else
 		{
 			Vector2 nextPathPosition = navi.GetNextPathPosition();
 			Vector2 direction = (nextPathPosition - GlobalPosition).Normalized();
 			Velocity = direction * Speed;
 			MoveAndSlide();
 		}
-		else
-		{
-			Velocity = Vector2.Zero; // roam, so this is a placeholder for now
-			MoveAndSlide(); // still call this so friction/collision resolution stays consistent
-		}
 	}
 
 	private void _on_aggro_timeout()
 	{
 		GD.Print("Enemy deaggroed");
-		inSight = false;
+		aoe.SetDeferred("monitoring", false);
+		getRandNode();
 	}
 
 	private void _on_nav_timeout()
 	{
 		if (navi.TargetPosition != goal.GlobalPosition) navi.TargetPosition = goal.GlobalPosition;
+		if (goal is not Player && navi.TargetPosition == goal.GlobalPosition) getRandNode(); // move somewhere else, lingering is intentional if the enemy draws the same node again
 	}
 
 	private void _on_area_2d_area_entered(Area2D area)
