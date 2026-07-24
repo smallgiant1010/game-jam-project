@@ -2,12 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://cb0ur3vdf28xq" path="res://scenes/player.tscn" id="1_w2twt"]
 [ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="2_pw63i"]
+[ext_resource type="Script" uid="uid://beqkf5yhhfusb" path="res://scenes/Lounge.cs" id="3_7ykc4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xayay"]
 size = Vector2(124, 124)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y3ltu"]
 size = Vector2(20, 378)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q17hq"]
+size = Vector2(119, 122)
 
 [node name="MainScene" type="Node2D" unique_id=1865833004]
 
@@ -48,3 +52,22 @@ debug_color = Color(0.8394357, 0.37986815, 0.16850898, 0.41960785)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TEST WALL" unique_id=1216212952]
 position = Vector2(223, 165)
 shape = SubResource("RectangleShape2D_y3ltu")
+
+[node name="Lounge" type="Area2D" parent="." unique_id=822457469]
+z_index = -1
+collision_layer = 8
+script = ExtResource("3_7ykc4")
+
+[node name="Sprite2D" type="Sprite2D" parent="Lounge" unique_id=1359384855]
+position = Vector2(-218, 168)
+texture = ExtResource("2_pw63i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lounge" unique_id=1559797533]
+position = Vector2(-217.5, 168)
+shape = SubResource("RectangleShape2D_q17hq")
+
+[node name="Timer" type="Timer" parent="Lounge" unique_id=144752530]
+
+[connection signal="body_entered" from="Lounge" to="Lounge" method="_on_body_entered"]
+[connection signal="body_exited" from="Lounge" to="Lounge" method="_on_body_exited"]
+[connection signal="timeout" from="Lounge/Timer" to="Lounge" method="_on_timer_timeout"]

@@ -42,5 +42,10 @@ collide_with_areas = true
 [node name="StunTimer" type="Timer" parent="." unique_id=2069087215]
 one_shot = true
 
+[node name="PatienceDecay" type="Timer" parent="." unique_id=13257338]
+autostart = true
+
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
+[connection signal="timeout" from="PatienceDecay" to="." method="_on_patience_decay_timeout"]
