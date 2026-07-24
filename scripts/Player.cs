@@ -1,26 +1,96 @@
 using Godot;
 using System;
 
-public partial class Player : Node2D
+public partial class Player : CharacterBody2D
 {
-	public static Player Instance;
-	[Export] private float speed = 10.0f;
-	[Export] private RemoteTransform2D remoteTransform2D_;
-	private Vector2 direction;
+	private int speed = 500;
+	[Export] public float health = 100; // patience
+	[Export] public float maxHealth = 100; // patience
+
+	[Export] public float decay = 1;
+	private RayCast2D raycast;
+	private Timer stunTimer;
+	private Area2D hurtbox;
+	[Export] public bool isStunned = false;
 	public override void _Ready()
 	{
-		Instance = this;
-		direction = Vector2.Right;
+		raycast = GetNode<RayCast2D>("RayCast2D");
+		stunTimer = GetNode<Timer>("StunTimer");
+		hurtbox = GetNode<Area2D>("hurtbox");
+	}
+	// private void _on_hurtbox_area_entered(Node2D body) // CHECK OBJECT NAME FIRST, FOR NOW IT WILL ALWAYS PERMA STUN
+	// {
+	// 	isStunned = true;
+	// 	hurtbox.SetDeferred("monitoring", false);
+
+	// 	stunTimer.Start();
+	// 	GD.Print(body.Name + " entered");
+	// }
+	private void _on_stun_timer_timeout()
+	{
+		isStunned = false;
+		hurtbox.SetDeferred("monitoring", true);
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	private void _on_patience_decay_timeout()
+	{
+		// pause if ur in lounge
+
+		health -= 1 * decay;
+		GD.Print(decay);
+	}
 	public override void _Process(double delta)
 	{
-		Vector2 InputMovement = Input.GetVector("move_left", "move_right", "move_up", "move_down");
-		direction = InputMovement;
+		if (health > maxHealth) health = maxHealth; // health capped
 
-		Vector2 CurrentPosition = Position;
-		CurrentPosition += InputMovement * speed;
-		Position = CurrentPosition;
+		if (health <= 0) GD.Print("you lost lmao what a loser");
+
+		if (Input.IsActionJustPressed("interact"))
+		{
+			GD.Print(raycast.IsColliding());
+			if (raycast.IsColliding())
+			{
+				var collider = raycast.GetCollider();
+				GD.Print(collider);
+			}
+		}
+	}
+
+	public override void _PhysicsProcess(double delta)
+	{
+		if (!isStunned)
+		{
+			Vector2 direction = Vector2.Zero;
+
+			if (Input.IsActionPressed("move_right"))
+			{
+				raycast.TargetPosition = new Vector2(64, 0);
+				direction.X += 1;
+			}
+
+			if (Input.IsActionPressed("move_left"))
+			{
+				raycast.TargetPosition = new Vector2(-64, 0);
+
+				direction.X -= 1;
+			}
+
+			if (Input.IsActionPressed("move_down"))
+			{
+				raycast.TargetPosition = new Vector2(0, 96); // player is taller than they are wide, raycast extended to compensate
+
+				direction.Y += 1;
+			}
+
+			if (Input.IsActionPressed("move_up"))
+			{
+				raycast.TargetPosition = new Vector2(0, -96);
+
+				direction.Y -= 1;
+			}
+			// GD.Print(Position);
+			Velocity = direction.Normalized() * speed;
+			MoveAndSlide();
+		}
 	}
 }
