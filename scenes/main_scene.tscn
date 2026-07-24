@@ -17,8 +17,8 @@ agent_radius = 5.0
 
 [node name="MainScene" type="Node2D" unique_id=1865833004]
 
-[node name="enemy" parent="." unique_id=859042563 instance=ExtResource("1_pu3yx")]
-position = Vector2(-400, 193)
+[node name="karen" parent="." unique_id=859042563 instance=ExtResource("1_pu3yx")]
+position = Vector2(-100, 200)
 scale = Vector2(3, 3)
 
 [node name="Control" type="Control" parent="." unique_id=755934538]
