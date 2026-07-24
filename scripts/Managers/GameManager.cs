@@ -16,24 +16,14 @@ public partial class GameManager : Node2D
 {
 	[Export] private float requiredMoney = 1000.0f;
 	[Export] private float TimeTilLevelEndsInMinutes = 5f;
-	public static GameManager Instance;
+	public static GameManager Instance { private set; get; }
 	private Day currentDay;
 	private float currentMoney = 0f;
 	public bool GameStarted = false;
-	public override void _EnterTree()
-	{
-		if (Instance == null)
-		{
-			Instance = this;
-		}
-		else
-		{
-			QueueFree();
-		}
-	}
 
 	public override void _Ready()
 	{
+		Instance = this;
 		currentDay = Day.SUNDAY;
 		DayTimer.Instance.Timeout += OnTimerTimeout;
 	}
