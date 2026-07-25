@@ -50,8 +50,11 @@ public partial class Coworker : Enemy
 	private void _on_check_fix_timeout()
 	{
 		// check if reg fixed every second, which will be done in the register.cs via signal
-		checktimer.Autostart = false;
-		brokeStuff = false;
-		goal = register;
+		if (brokeStuff)
+		{
+			checktimer.Autostart = false;
+			brokeStuff = false;
+			goal = register;
+		}
 	}
 }

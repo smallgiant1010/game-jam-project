@@ -12,31 +12,33 @@ public partial class Player : CharacterBody2D
 	[Export] public float decay = 1;
 	[Export] public int live = 3;
 	private RayCast2D raycast;
+	private Control tasklist;
 	public Timer stunTimer;
 	private Area2D hurtbox;
+	private PackedScene qteScene;
+	private Mop mop;
 
-   private Mop mop;
+	private Wrench wrench;
 
-   private Wrench wrench;
+	private enum toolType { Mop, Wrench, None }
+	private toolType currentTool;
+	private List<Tool> tools = new List<Tool>();
+	private Rat tempRat;
+	public override void _Ready()
+	{
+		raycast = GetNode<RayCast2D>("RayCast2D");
+		stunTimer = GetNode<Timer>("StunTimer");
+		hurtbox = GetNode<Area2D>("hurtbox");
+		mop = GetNode<Mop>("mop");
+		wrench = GetNode<Wrench>("wrench");
+		tasklist = GetNode<Control>("../tasklist/TaskList");
+		qteScene = GD.Load<PackedScene>("res://scenes/QTE/quick_time_slider.tscn");
+		tools.Add(mop);
+		tools.Add(wrench);
+		currentTool = toolType.None; //add press key event for equipping tool
 
-   private enum toolType{ Mop, Wrench, None }
-   private toolType currentTool;
-   private List<Tool> tools = new List<Tool>();
-   public override void _Ready()
-   {
-      raycast = GetNode<RayCast2D>("RayCast2D");
-      stunTimer = GetNode<Timer>("StunTimer");
-      hurtbox = GetNode<Area2D>("hurtbox");
-      mop = GetNode<Mop>("mop");
-      wrench = GetNode<Wrench>("wrench");
-      tools.Add(mop);
-      tools.Add(wrench);
-      currentTool = toolType.None; //add press key event for equipping tool
-   }
-	// private void _on_hurtbox_area_entered(Node2D body) // CHECK OBJECT NAME FIRST, FOR NOW IT WILL ALWAYS PERMA STUN
-	// {
-	// 	isStunned = true;
-	// 	hurtbox.SetDeferred("monitoring", false);
+		GD.Print(tasklist);
+	}
 
 	private void _on_stun_timer_timeout()
 	{
@@ -47,9 +49,21 @@ public partial class Player : CharacterBody2D
 	private void _on_patience_decay_timeout()
 	{
 		// pause if ur in lounge
-
 		health -= 1 * decay;
 		GD.Print(health);
+	}
+
+	private void qteEnd(bool isSuccessful)
+	{
+		isStunned = false;
+
+		if (isSuccessful)
+		{
+			tempRat.Caught();
+			tempRat = null;
+			return;
+		}
+		tempRat.stunned = false;
 	}
 	public override void _Process(double delta)
 	{
@@ -64,9 +78,26 @@ public partial class Player : CharacterBody2D
 			{
 				var collider = raycast.GetCollider();
 				if (collider is Aisle a) a.Interact(1);
+				if (collider is Rat r)
+				{
+					// load the scene lmao
+					var instance = qteScene.Instantiate<Control>();
+					tasklist.GetParent().AddChild(instance);
+					QuickTimeSlider qte = GetNode<QuickTimeSlider>("../tasklist/Quick Time Slider");
+					qte.Finish += qteEnd;
+
+					isStunned = true; // stun player until they finish qte
+					tempRat = r;
+					r.stunned = true;
+				}
 				// else if (collider is Fridge b) b.
 				GD.Print(collider);
 			}
+		}
+
+		if (Input.IsActionJustPressed("tasklist"))
+		{
+			tasklist.Visible = !tasklist.Visible;
 		}
 	}
 
@@ -102,7 +133,6 @@ public partial class Player : CharacterBody2D
 
 				direction.Y -= 1;
 			}
-			// GD.Print(Position);
 			Velocity = direction.Normalized() * speed;
 			MoveAndSlide();
 		}
