@@ -48,7 +48,8 @@ public partial class Thief : Enemy
       if (body is Player player)
       {
          currentState = State.Fleeing;
-         navi.TargetPosition = navNodes[navNodes.Count - 1].GlobalPosition;
+         goal = navNodes[navNodes.Count - 1];
+         navi.TargetPosition = goal.GlobalPosition;
          Vector2 direction = (navi.TargetPosition - GlobalPosition).Normalized();
          Velocity = direction * Speed;
          MoveAndSlide();

@@ -13,6 +13,8 @@ public partial class Enemy : CharacterBody2D
 
    [Export] protected Godot.Collections.Array<Node2D> navNodes = new Godot.Collections.Array<Node2D>();
 
+   private LinkedListNode<Enemy> id;
+
    public override void _Ready()
    {
       // GetNode<NavigationAgent2D>("NavigationAgent2D").TargetPosition = goal.GlobalPosition;
@@ -23,6 +25,13 @@ public partial class Enemy : CharacterBody2D
 
    public override void _PhysicsProcess(double delta)
    {
+
+      if (goal == navNodes[navNodes.Count - 1] && navi.IsNavigationFinished()) //kill enemy when it reaches exit
+      {
+         QueueFree();
+      }
+
+
       if (navi.IsNavigationFinished())
       {
          Velocity = Vector2.Zero;  // keep this so it settles/resolves collisions properly, doesn't just freeze mid-air
@@ -35,6 +44,7 @@ public partial class Enemy : CharacterBody2D
       }
       MoveAndSlide();
    }
+
 
    public void getRandNode()
    {
