@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://df310vjxgowg7"]
+
+[ext_resource type="Script" uid="uid://dexnrk8338cnm" path="res://scripts/Entities/Person.cs" id="1_0vurh"]
+[ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="2_cgb28"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qfw0p"]
+size = Vector2(116, 117)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fcclx"]
+
+[node name="Person" type="CharacterBody2D" unique_id=805093475]
+script = ExtResource("1_0vurh")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1350214659]
+texture = ExtResource("2_cgb28")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1925776475]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_qfw0p")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=906734442]
+
+[node name="buyZone" type="Area2D" parent="." unique_id=812065584]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="buyZone" unique_id=1730327503]
+scale = Vector2(20, 20)
+shape = SubResource("CircleShape2D_fcclx")
+
+[connection signal="body_entered" from="buyZone" to="." method="_on_buy_zone_body_entered"]

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c1lr6niu1iobq"]
+
+[ext_resource type="Script" uid="uid://cm0quyrrqhis7" path="res://scripts/Tools/Wrench.cs" id="1_oey37"]
+[ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="2_j7xsw"]
+
+[node name="Wrench" type="Node2D" unique_id=362196883]
+script = ExtResource("1_oey37")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1519776490]
+texture = ExtResource("2_j7xsw")

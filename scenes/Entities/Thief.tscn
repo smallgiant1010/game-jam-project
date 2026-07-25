@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://3aj0gr8o6sgq"]
+
+[ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="1_jnqrd"]
+[ext_resource type="Script" uid="uid://ce47yg6lkbgiu" path="res://scripts/Entities/Thief.cs" id="1_kokts"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fcclx"]
+size = Vector2(117, 118)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fcclx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_embeb"]
+size = Vector2(160, 35)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qfw0p"]
+
+[node name="Thief" type="CharacterBody2D" unique_id=11878324 node_paths=PackedStringArray("navi")]
+script = ExtResource("1_kokts")
+navi = NodePath("NavigationAgent2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1838028183]
+texture = ExtResource("1_jnqrd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2073134614]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_fcclx")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=426199517]
+
+[node name="nav" type="Timer" parent="." unique_id=719825932]
+
+[node name="panicZone" type="Area2D" parent="." unique_id=977181172]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="panicZone" unique_id=2079632021]
+visible = false
+scale = Vector2(20, 20)
+shape = SubResource("CircleShape2D_fcclx")
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="." unique_id=2017847644]
+position = Vector2(1, -93)
+shape = SubResource("RectangleShape2D_embeb")
+target_position = Vector2(0, 190)
+
+[node name="stealZone" type="Area2D" parent="." unique_id=1785969443]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stealZone" unique_id=183905042]
+scale = Vector2(30, 30)
+shape = SubResource("CircleShape2D_qfw0p")
+
+[connection signal="timeout" from="nav" to="." method="_on_nav_timeout"]
+[connection signal="body_entered" from="panicZone" to="." method="_on_panic_zone_body_entered"]
+[connection signal="body_entered" from="stealZone" to="." method="_on_steal_zone_body_entered"]

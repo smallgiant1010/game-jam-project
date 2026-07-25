@@ -8,32 +8,39 @@ public partial class Enemy : CharacterBody2D
 	[Export] public Node2D goal = null;
 	[Export] protected NavigationAgent2D navi;
 	[Export] protected Area2D aoe;
-	protected RayCast2D raycast;
+	protected ShapeCast2D shapecast;
 	protected Timer aggro; // can also be used to trigger hazard, i.e aggro timer runs out, kid spills drink on floor
-	protected List<Node2D> navNodes = new List<Node2D>();
+
+	[Export] protected Godot.Collections.Array<Node2D> navNodes = new Godot.Collections.Array<Node2D>();
 
 	public override void _Ready()
 	{
 		// GetNode<NavigationAgent2D>("NavigationAgent2D").TargetPosition = goal.GlobalPosition;
-		raycast = GetNode<RayCast2D>("RayCast2D");
-		aggro = GetNode<Timer>("aggro");
-		Node naviNodesContainer = GetNode<Node2D>("../NavigationRegion2D/navi nodes"); // adjust path as needed
-		foreach (Node child in naviNodesContainer.GetChildren())
-		{
-			if (child is Node2D navPoint)
-			{
-				GD.Print("Nav point: ", navPoint.Name, " at ", navPoint.GlobalPosition);
-				navNodes.Add(navPoint); // can prob be optimized by hard setting it idk
-			}
-		}
+		shapecast = GetNodeOrNull<ShapeCast2D>("ShapeCast2D");
+		aggro = GetNodeOrNull<Timer>("aggro");
 		getRandNode();
+	}
+   
+   public override void _PhysicsProcess(double delta)
+	{
+		if (navi.IsNavigationFinished())
+		{
+			Velocity = Vector2.Zero;  // keep this so it settles/resolves collisions properly, doesn't just freeze mid-air
+		}
+		else
+		{
+			Vector2 nextPathPosition = navi.GetNextPathPosition();
+			Vector2 direction = (nextPathPosition - GlobalPosition).Normalized();
+			Velocity = direction * Speed;
+		}
+		MoveAndSlide();
 	}
 
 	public void getRandNode()
-	{
-		Random rnd = new Random();
-		goal = navNodes[rnd.Next(0, navNodes.Count)];
-		navi.TargetPosition = goal.GlobalPosition; 
-		GD.Print(goal);
-	}
+   {
+      Random rnd = new Random();
+      goal = navNodes[rnd.Next(0, navNodes.Count - 1)]; // exclude last node (reserved as exit)
+      navi.TargetPosition = goal.GlobalPosition;
+      GD.Print(goal);
+   }
 }

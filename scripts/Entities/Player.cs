@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 public partial class Player : CharacterBody2D
 {
@@ -11,13 +13,26 @@ public partial class Player : CharacterBody2D
 	private RayCast2D raycast;
 	private Timer stunTimer;
 	private Area2D hurtbox;
+
+   private Mop mop;
+
+   private Wrench wrench;
 	[Export] public bool isStunned = false;
-	public override void _Ready()
-	{
-		raycast = GetNode<RayCast2D>("RayCast2D");
-		stunTimer = GetNode<Timer>("StunTimer");
-		hurtbox = GetNode<Area2D>("hurtbox");
-	}
+
+   private enum toolType{ Mop, Wrench, None }
+   private toolType currentTool;
+   private List<Tool> tools;
+   public override void _Ready()
+   {
+      raycast = GetNode<RayCast2D>("RayCast2D");
+      stunTimer = GetNode<Timer>("StunTimer");
+      hurtbox = GetNode<Area2D>("hurtbox");
+      mop = GetNode<Mop>("mop");
+      wrench = GetNode<Wrench>("wrench");
+      tools.Add(mop);
+      tools.Add(wrench);
+      currentTool = toolType.None; //add press key event for equipping tool
+   }
 	// private void _on_hurtbox_area_entered(Node2D body) // CHECK OBJECT NAME FIRST, FOR NOW IT WILL ALWAYS PERMA STUN
 	// {
 	// 	isStunned = true;

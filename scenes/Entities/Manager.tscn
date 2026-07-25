@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://c8yv2486iy52"]
+
+[ext_resource type="Script" uid="uid://rgxosj85in20" path="res://scripts/Entities/Manager.cs" id="1_8tl6f"]
+[ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="2_trvrl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wywcd"]
+size = Vector2(115, 118)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vnoir"]
+
+[node name="Manager" type="CharacterBody2D" unique_id=1981743570]
+script = ExtResource("1_8tl6f")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1415627402]
+texture = ExtResource("2_trvrl")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=59385743]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1411581828]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_wywcd")
+
+[node name="attackZone" type="Area2D" parent="." unique_id=1752423432]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attackZone" unique_id=1925711679]
+scale = Vector2(30, 30)
+shape = SubResource("CircleShape2D_vnoir")
