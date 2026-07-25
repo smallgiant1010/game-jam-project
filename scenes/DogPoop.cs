@@ -8,7 +8,7 @@ public partial class DogPoop : Area2D
 	private Timer timer;
 	public override void _Ready()
 	{
-		timer = GetNode<Timer>("Tiemer");
+		timer = GetNode<Timer>("Timer");
 	}
 
 	public void interact()

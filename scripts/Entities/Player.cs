@@ -44,7 +44,7 @@ public partial class Player : CharacterBody2D
 			if (raycast.IsColliding())
 			{
 				var collider = raycast.GetCollider();
-				if (collider is Aisle a) a.interact();
+				if (collider is Aisle a) a.Interact(1);
 				// else if (collider is Fridge b) b.
 				GD.Print(collider);
 			}
