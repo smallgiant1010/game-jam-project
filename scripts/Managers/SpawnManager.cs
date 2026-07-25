@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 
 public partial class SpawnManager : Node2D
@@ -28,8 +29,9 @@ public partial class SpawnManager : Node2D
 	[Export] private Godot.Collections.Dictionary<Entity, PackedScene> scenes;
 	[Export] private PackedScene playerScene_;
 
-	public override void _Ready()
+	public override void _EnterTree()
 	{
+		Instance = this;
 		entityProbabilitiesPerDay = new();
 		InitializeProbabilitiesList();
 		GameManager.Instance.StartGame += OnStartGame;
@@ -37,29 +39,31 @@ public partial class SpawnManager : Node2D
 		timer_.Timeout += OnTimeout;
 	}
 
-    public override void _ExitTree()
-    {
-        GameManager.Instance.StartGame -= OnStartGame;
+	public override void _ExitTree()
+	{
+		GameManager.Instance.StartGame -= OnStartGame;
 		GameManager.Instance.EndGame -= OnEndGame;
-    }
+	}
 
 	private void OnStartGame()
 	{
+		GD.Print("sssss");
 		timer_.Start(spawnDelay);
 		spawnPoint_ = GetTree().CurrentScene.GetNode<Node2D>("Entrance");
-		Player player = playerScene_.Instantiate<Player>();
+		CharacterBody2D player = playerScene_.Instantiate<CharacterBody2D>();
 		player.GlobalPosition = spawnPoint_.GlobalPosition;
 		spawning = true;
+		GetTree().CurrentScene.AddChild(player); // add to scene root, not Kid
 	}
-	
+
 	private void OnEndGame()
 	{
 		spawning = false;
 		spawnProbability = 100;
 	}
 
-    private void InitializeProbabilitiesList()
-    {
+	private void InitializeProbabilitiesList()
+	{
 		entityProbabilitiesPerDay.Add(
 		[
 			new EntityDetails(Entity.RAT, 0),
@@ -122,7 +126,30 @@ public partial class SpawnManager : Node2D
 			new EntityDetails(Entity.KAREN, 40),
 			new EntityDetails(Entity.THIEF, 20)
 		]);
-    }
+	}
+
+	private void MakePath(Enemy enemy, Customer customer)
+	{
+		Node root = GetTree().CurrentScene;
+		var nav = root.GetNode<Node>("nav").GetChildren();
+		int numNodes = Random.Shared.Next(5, nav.Count);
+
+		if (customer == null)
+		{
+			for (int i = 0; i < numNodes; i++)
+			{
+				enemy.navNodes.Add((Node2D)nav[Random.Shared.Next(0, nav.Count - 1)]); // last node is reserved as exit
+			}
+			enemy.navNodes.Add((Node2D)nav[^1]); // get last node
+			return;
+		}
+
+		for (int i = 0; i < numNodes; i++)
+		{
+			customer.navNodes.Add((Node2D)nav[Random.Shared.Next(0, nav.Count - 1)]); // last node is reserved as exit
+		}
+		customer.navNodes.Add((Node2D)nav[^1]); // get last node
+	}
 
 	private void OnTimeout()
 	{
@@ -133,12 +160,14 @@ public partial class SpawnManager : Node2D
 			if (gachaForCustomer <= customerSpawnProbability)
 			{
 				Customer customer = (gachaForType <= 50) ? scenes[Entity.CUSTOMER].Instantiate<Customer>() : scenes[Entity.CUSTOMER_WITH_DOG].Instantiate<Customer>();
-				LinkedListNode<Customer> id = Market.Instance.AddCustomer(customer);
+				LinkedListNode<Customer> id = Market.Instance.AddCustomer(ref customer);
 				customer.id = id;
 				customer.GlobalPosition = spawnPoint_.GlobalPosition;
 				Register randomRegister = Market.Instance.registers[Random.Shared.Next(0, Market.Instance.registers.Count - 1)];
 				customer.setRegister(randomRegister);
 				customer.ReachedRegister += randomRegister.OnReachedRegister;
+				MakePath(null, customer);
+				GetTree().CurrentScene.AddChild(customer); // add to scene root, not Kid
 			}
 			else
 			{
@@ -148,21 +177,23 @@ public partial class SpawnManager : Node2D
 					{
 						// spawn enemy
 						Enemy enemy = scenes[ED.Name].Instantiate<Enemy>();
-						LinkedListNode<Enemy> id = Market.Instance.AddEnemy(enemy);
+						LinkedListNode<Enemy> id = Market.Instance.AddEnemy(ref enemy);
 						enemy.id = id;
 						enemy.GlobalPosition = spawnPoint_.GlobalPosition;
+						MakePath(enemy, null);
+						GetTree().CurrentScene.AddChild(enemy); // add to scene root, not Kid
 					}
-					gachaForCustomer -= ED.Weight;
+					gachaForType -= ED.Weight;
 				}
 			}
 		}
 
-		if(spawning)
+		if (spawning)
 		{
 			timer_.Start(spawnDelay);
 		}
 	}
-	
+
 	public void ChangeSpawnProbability(double probability)
 	{
 		spawnProbability = (int)(spawnProbability * probability);

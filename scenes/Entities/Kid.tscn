@@ -4,19 +4,18 @@
 [ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="2_2and3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xayay"]
-size = Vector2(15, 16)
+size = Vector2(6, 6)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_md0e3"]
-radius = 11.0
+radius = 2.236068
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xayay"]
 
-[node name="Kid" type="CharacterBody2D" unique_id=859042563 node_paths=PackedStringArray("spillTime", "goal", "navi", "aoe", "navNodes")]
+[node name="Kid" type="CharacterBody2D" unique_id=859042563 node_paths=PackedStringArray("spillTime", "navi", "aoe", "navNodes")]
 collision_layer = 32
 collision_mask = 17
 script = ExtResource("1_2and3")
 spillTime = NodePath("spill")
-goal = NodePath("Area2D")
 navi = NodePath("NavigationAgent2D")
 aoe = NodePath("Area2D")
 navNodes = [null, null, null]
@@ -26,8 +25,8 @@ shape = SubResource("RectangleShape2D_xayay")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=312614072]
 modulate = Color(0.13725491, 0.043137256, 1, 1)
-position = Vector2(1.9073486e-06, -1.9073486e-06)
-scale = Vector2(0.15625, 0.15625)
+position = Vector2(-2.3841858e-07, 0)
+scale = Vector2(0.046875004, 0.046874996)
 texture = ExtResource("2_2and3")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1825357227]

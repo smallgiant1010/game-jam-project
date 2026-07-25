@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="2_bhr88"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xayay"]
-size = Vector2(15, 16)
+size = Vector2(4, 3)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_md0e3"]
-radius = 43.104523
+radius = 5.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y3ltu"]
 
@@ -19,13 +19,13 @@ navi = NodePath("NavigationAgent2D")
 aoe = NodePath("Area2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1681358200]
-position = Vector2(0.5, 0)
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_xayay")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=312614072]
 modulate = Color(0.13725491, 0.043137256, 1, 1)
-position = Vector2(1.9073486e-06, -1.9073486e-06)
-scale = Vector2(0.15625, 0.15625)
+position = Vector2(0, -0.5)
+scale = Vector2(0.031249998, 0.023437498)
 texture = ExtResource("2_bhr88")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1825357227]
@@ -46,7 +46,7 @@ debug_enabled = true
 
 [node name="RayCast2D" type="ShapeCast2D" parent="." unique_id=740513940]
 shape = SubResource("RectangleShape2D_y3ltu")
-target_position = Vector2(150, 0)
+target_position = Vector2(25, 0)
 max_results = 1
 collision_mask = 16
 collide_with_areas = true

@@ -24,31 +24,37 @@ public partial class GameManager : Node2D
 	public Day currentDay { private set; get; }
 	private float currentMoney = 0f;
 
-	public override void _Ready()
+	public override void _EnterTree()
 	{
 		Instance = this;
 		currentDay = Day.SUNDAY;
-		DayTimer.Instance.Timeout += OnTimerTimeout;
 	}
 
-    public override void _ExitTree()
-    {
-        DayTimer.Instance.Timeout -= OnTimerTimeout;
-    }
+	public override void _Ready()
+	{
+		DayTimer.Instance.Timeout += OnTimerTimeout;
+		EmitSignal("StartGame"); // now fires after all _EnterTree() calls across all autoloads have run
+	}
+
+	public override void _ExitTree()
+	{
+		DayTimer.Instance.Timeout -= OnTimerTimeout;
+	}
 
 
 	private void OnTimerTimeout()
 	{
 		EmitSignal("EndGame");
-		switch(currentDay)
+		switch (currentDay)
 		{
 			case Day.SATURDAY:
-				if(requiredMoney <= currentMoney)
+				if (requiredMoney <= currentMoney)
 				{
-					
-				} else
+
+				}
+				else
 				{
-					
+
 				}
 				break;
 			case Day.FRIDAY:

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="2_t355a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fcclx"]
-size = Vector2(13, 14)
+size = Vector2(2, 2)
 
 [node name="Rat" type="CharacterBody2D" unique_id=772976737 node_paths=PackedStringArray("navi", "navNodes")]
 collision_layer = 5
@@ -13,12 +13,11 @@ navi = NodePath("NavigationAgent2D")
 navNodes = [null, null, null]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=773568896]
-position = Vector2(-0.5, -1)
 shape = SubResource("RectangleShape2D_fcclx")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2025691351]
-position = Vector2(-0.5000001, -0.9999999)
-scale = Vector2(0.1015625, 0.10937499)
+position = Vector2(5.9604645e-08, 5.9604645e-08)
+scale = Vector2(0.015624999, 0.015625)
 texture = ExtResource("2_t355a")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=662811284]

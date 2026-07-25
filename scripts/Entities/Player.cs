@@ -109,27 +109,27 @@ public partial class Player : CharacterBody2D
 
 			if (Input.IsActionPressed("move_right"))
 			{
-				raycast.TargetPosition = new Vector2(64, 0);
+				raycast.TargetPosition = new Vector2(28, 0);
 				direction.X += 1;
 			}
 
 			if (Input.IsActionPressed("move_left"))
 			{
-				raycast.TargetPosition = new Vector2(-64, 0);
+				raycast.TargetPosition = new Vector2(-28, 0);
 
 				direction.X -= 1;
 			}
 
 			if (Input.IsActionPressed("move_down"))
 			{
-				raycast.TargetPosition = new Vector2(0, 96); // player is taller than they are wide, raycast extended to compensate
+				raycast.TargetPosition = new Vector2(0, 28); // player is taller than they are wide, raycast extended to compensate
 
 				direction.Y += 1;
 			}
 
 			if (Input.IsActionPressed("move_up"))
 			{
-				raycast.TargetPosition = new Vector2(0, -96);
+				raycast.TargetPosition = new Vector2(0, -28);
 
 				direction.Y -= 1;
 			}

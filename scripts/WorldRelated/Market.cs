@@ -14,6 +14,12 @@ public partial class Market : Node
     public override void _Ready()
     {
         Instance = this;
+        registers = [];
+        machines = [];
+        aisles = [];
+        storageRacks = [];
+        enemies = [];
+        customers = [];
         GameManager.Instance.EndGame += OnEndGame;
         GameManager.Instance.StartGame += InitializeInteractives;
     }
@@ -27,12 +33,12 @@ public partial class Market : Node
 
     private void OnEndGame()
     {
-        foreach(Enemy enemy in enemies)
+        foreach (Enemy enemy in enemies)
         {
             enemy.QueueFree();
         }
 
-        foreach(Customer customer in customers)
+        foreach (Customer customer in customers)
         {
             customer.QueueFree();
         }
@@ -44,38 +50,40 @@ public partial class Market : Node
 
     private void InitializeInteractives()
     {
-        machines = [];
-        aisles = [];
-        storageRacks = [];
-        enemies = [];
-        customers = [];
-        var childrenOfRoot = GetTree().CurrentScene.GetChildren(true);
-        foreach (Node node in childrenOfRoot)
+        var childrenOfRoot = GetTree().CurrentScene.GetNode<TileMapLayer>("InteractiveLayer");
+        foreach (Aisle aisle in childrenOfRoot.GetNode<Node>("Aisles").GetChildren())
         {
-            if (node is Aisle aisle)
-            {
-                aisles.Add(aisle);
-            }
-            else if (node is BreakableInteractive breakableInteractive)
-            {
-                machines.Add(breakableInteractive);
-                if(breakableInteractive is Register register)
-                {
-                    registers.Add(register);
-                }
-            } else if(node is StorageRack storageRack)
-            {
-                storageRacks.Add(storageRack);
-            }
+            aisles.Add(aisle);
+        }
+
+        foreach (Fridge fridge in childrenOfRoot.GetNode<Node>("Fridges").GetChildren())
+        {
+            machines.Add(fridge);
+        }
+
+        foreach (VendingMachine vendingMachine in childrenOfRoot.GetNode<Node>("VendingMachines").GetChildren())
+        {
+            machines.Add(vendingMachine);
+        }
+
+        foreach (Register register in childrenOfRoot.GetNode<Node>("Registers").GetChildren())
+        {
+            machines.Add(register);
+            registers.Add(register);
+        }
+
+        foreach (StorageRack storageRack in childrenOfRoot.GetNode<Node>("StorageRacks").GetChildren())
+        {
+            storageRacks.Add(storageRack);
         }
     }
 
-    public LinkedListNode<Enemy> AddEnemy(Enemy enemy)
+    public LinkedListNode<Enemy> AddEnemy(ref Enemy enemy)
     {
         return enemies.AddLast(enemy);
     }
 
-    public LinkedListNode<Customer> AddCustomer(Customer customer)
+    public LinkedListNode<Customer> AddCustomer(ref Customer customer)
     {
         return customers.AddLast(customer);
     }
@@ -84,7 +92,7 @@ public partial class Market : Node
     {
         enemies.Remove(node);
     }
-    
+
     public void RemoveCustomer(LinkedListNode<Customer> node)
     {
         customers.Remove(node);

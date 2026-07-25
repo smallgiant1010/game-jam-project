@@ -11,7 +11,7 @@ public partial class Enemy : CharacterBody2D
    protected ShapeCast2D shapecast;
    protected Timer aggro; // can also be used to trigger hazard, i.e aggro timer runs out, kid spills drink on floor
 
-   [Export] protected Godot.Collections.Array<Node2D> navNodes = new Godot.Collections.Array<Node2D>();
+   [Export] public Godot.Collections.Array<Node2D> navNodes = new Godot.Collections.Array<Node2D>();
 
    public LinkedListNode<Enemy> id;
 

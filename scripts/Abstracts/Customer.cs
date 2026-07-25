@@ -10,7 +10,7 @@ public partial class Customer : CharacterBody2D
    protected enum ShoppingState { Roaming, HeadingToRegister, AtRegister, HeadingToExit }
    protected ShoppingState state = ShoppingState.Roaming;
 
-   [Export] protected Godot.Collections.Array<Node2D> navNodes = new Godot.Collections.Array<Node2D>();
+   [Export] public Godot.Collections.Array<Node2D> navNodes = new Godot.Collections.Array<Node2D>();
 
    [Export] protected NavigationAgent2D navi;
    [Export] protected Node2D register;
