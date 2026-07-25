@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://x02buufc2rrw"]
+
+[ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="1_gtc8n"]
+[ext_resource type="Script" uid="uid://bus6fguqlrxcl" path="res://scripts/Tools/Mop.cs" id="1_wdej1"]
+
+[node name="Mop" type="Node2D" unique_id=448990267]
+script = ExtResource("1_wdej1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1827618570]
+texture = ExtResource("1_gtc8n")

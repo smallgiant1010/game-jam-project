@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bwg7e0g6ka24a"]
+
+[ext_resource type="Script" uid="uid://thj2crybyh0e" path="res://scripts/Entities/Mailman.cs" id="1_carh1"]
+[ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="2_vnoir"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trvrl"]
+size = Vector2(115, 118)
+
+[node name="Mailman" type="CharacterBody2D" unique_id=577379325]
+script = ExtResource("1_carh1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1300802176]
+texture = ExtResource("2_vnoir")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1943031423]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_trvrl")
+
+[node name="spawnTimer" type="Timer" parent="." unique_id=848037149]
+wait_time = 30.0
+one_shot = true
+
+[node name="stayTimer" type="Timer" parent="." unique_id=1255539015]
+wait_time = 10.0
+one_shot = true

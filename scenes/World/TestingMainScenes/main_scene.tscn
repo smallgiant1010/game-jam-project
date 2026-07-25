@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bxgmjh3g3rsiw"]
 
-[ext_resource type="PackedScene" uid="uid://clb7jtnwrlvgo" path="res://scenes/Entities/karen.tscn" id="1_nrhmi"]
+[ext_resource type="PackedScene" uid="uid://clb7jtnwrlvgo" path="res://scenes/Entities/Karen.tscn" id="1_nrhmi"]
 [ext_resource type="PackedScene" uid="uid://cb0ur3vdf28xq" path="res://scenes/Entities/player.tscn" id="2_xaef2"]
 [ext_resource type="PackedScene" uid="uid://cbk72o4dkjuaa" path="res://scenes/Misc/dog_poop.tscn" id="3_vw7pp"]
 [ext_resource type="PackedScene" uid="uid://bw582k0vtrrvx" path="res://scenes/World/lounge.tscn" id="4_upn8w"]

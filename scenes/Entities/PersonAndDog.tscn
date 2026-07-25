@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://djxtsqk0ihsk0"]
+
+[ext_resource type="Script" uid="uid://bqhcppni63p4a" path="res://scripts/Entities/PersonAndDog.cs" id="1_cif2b"]
+[ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="2_cgkxx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fcclx"]
+size = Vector2(118, 117)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fcclx"]
+
+[node name="PersonAndDog" type="CharacterBody2D" unique_id=934912892]
+script = ExtResource("1_cif2b")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1067908804]
+texture = ExtResource("2_cgkxx")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=2013223348]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1297923214]
+position = Vector2(1, -0.5)
+shape = SubResource("RectangleShape2D_fcclx")
+
+[node name="buyZone" type="Area2D" parent="." unique_id=686705433]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="buyZone" unique_id=1575690543]
+scale = Vector2(20, 20)
+shape = SubResource("CircleShape2D_fcclx")
+
+[connection signal="body_entered" from="buyZone" to="." method="_on_buy_zone_body_entered"]
