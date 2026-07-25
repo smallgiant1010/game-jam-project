@@ -8,6 +8,11 @@ public static class Scenes
         public const string DAY_UID = "uid://c3ehw550w88hs";
     }
 
+    public static class ShopScene
+    {
+        public const string SHOP_UID = "uid://evnrud14fgw0";
+    }
+
 }
 
 public partial class SceneManager : Node

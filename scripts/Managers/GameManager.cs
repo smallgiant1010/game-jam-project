@@ -56,6 +56,7 @@ public partial class GameManager : Node2D
 			default:
 				currentDay++;
 				SpawnManager.Instance.customerSpawnProbability -= 10;
+				SceneManager.Instance.LoadLevel(Scenes.ShopScene.SHOP_UID);
 				break;
 		}
 	}

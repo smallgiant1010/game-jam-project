@@ -26,6 +26,7 @@ public partial class SpawnManager : Node2D
 	[Export] private Timer timer_;
 	private bool spawning = false;
 	[Export] private Godot.Collections.Dictionary<Entity, PackedScene> scenes;
+	[Export] private PackedScene playerScene_;
 
 	public override void _Ready()
 	{
@@ -46,6 +47,8 @@ public partial class SpawnManager : Node2D
 	{
 		timer_.Start(spawnDelay);
 		spawnPoint_ = GetTree().CurrentScene.GetNode<Node2D>("Entrance");
+		Player player = playerScene_.Instantiate<Player>();
+		player.GlobalPosition = spawnPoint_.GlobalPosition;
 		spawning = true;
 	}
 	
