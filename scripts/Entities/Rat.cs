@@ -15,8 +15,6 @@ public partial class Rat : Enemy
    {
       // SpawnManager.Instance.ChangeSpawnProbability(2);
       Market.Instance.RemoveEnemy(id);
-      GD.Print("dadada");
-      // SpawnManager.Instance.ChangeSpawnProbability(2);
       QueueFree();
    }
 

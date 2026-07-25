@@ -1,21 +1,36 @@
 [gd_scene format=3 uid="uid://bb53utmxncygd"]
 
-[node name="CashRegister" type="Control" unique_id=1687348679]
+[ext_resource type="Script" uid="uid://btpseab41lt4d" path="res://scripts/UIRelated/CashRegister.cs" id="1_utkbd"]
+
+[node name="CashRegister" type="Control" unique_id=1687348679 node_paths=PackedStringArray("denominations", "totalCost", "amountGiven", "closeButton_", "transactionButton_")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_utkbd")
+denominations = [NodePath("VBoxContainer/MarginContainer/HBoxContainer/HalfDollars"), NodePath("VBoxContainer/MarginContainer/HBoxContainer/Quarters"), NodePath("VBoxContainer/MarginContainer/HBoxContainer/Dimes"), NodePath("VBoxContainer/MarginContainer/HBoxContainer/Nickels"), NodePath("VBoxContainer/MarginContainer/HBoxContainer/Pennies")]
+totalCost = NodePath("VBoxContainer/Total Cost")
+amountGiven = NodePath("VBoxContainer/Amount Given")
+closeButton_ = NodePath("Close")
+transactionButton_ = NodePath("VBoxContainer/CenterContainer/CompleteTransaction")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1313100797]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 800.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.06693592, 0.31862423, 0.17822355, 1)
+
+[node name="Close" type="Button" parent="." unique_id=314601749]
+layout_mode = 0
+offset_left = 1250.0
+offset_top = 10.0
+offset_right = 1268.0
+offset_bottom = 41.0
+text = "X"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=348325760]
 custom_minimum_size = Vector2(0, 800)
@@ -45,7 +60,7 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="VBoxContainer/CenterContainer" unique_id=1256717502]
+[node name="CompleteTransaction" type="Button" parent="VBoxContainer/CenterContainer" unique_id=1256717502]
 custom_maximum_size = Vector2(200, -1)
 layout_mode = 2
 text = "Complete Transaction"
@@ -63,30 +78,30 @@ custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 theme_override_constants/separation = 57
 
-[node name="Half-Dollar" type="PanelContainer" parent="VBoxContainer/MarginContainer/HBoxContainer" unique_id=732020738]
+[node name="HalfDollars" type="PanelContainer" parent="VBoxContainer/MarginContainer/HBoxContainer" unique_id=732020738]
 custom_minimum_size = Vector2(200, 0)
 custom_maximum_size = Vector2(-1, 250)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/Half-Dollar" unique_id=903969614]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/HalfDollars" unique_id=903969614]
 layout_mode = 2
 
-[node name="Denomination" type="ColorRect" parent="VBoxContainer/MarginContainer/HBoxContainer/Half-Dollar/VBoxContainer" unique_id=576186424]
+[node name="Denomination" type="ColorRect" parent="VBoxContainer/MarginContainer/HBoxContainer/HalfDollars/VBoxContainer" unique_id=576186424]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/Half-Dollar/VBoxContainer" unique_id=783817077]
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/HalfDollars/VBoxContainer" unique_id=783817077]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/Half-Dollar/VBoxContainer/CenterContainer" unique_id=581963728]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/HalfDollars/VBoxContainer/CenterContainer" unique_id=581963728]
 layout_mode = 2
 
-[node name="Remove" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/Half-Dollar/VBoxContainer/CenterContainer/HBoxContainer" unique_id=1483698203]
+[node name="Remove" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/HalfDollars/VBoxContainer/CenterContainer/HBoxContainer" unique_id=1483698203]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 text = "-"
 
-[node name="Add" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/Half-Dollar/VBoxContainer/CenterContainer/HBoxContainer" unique_id=1840073967]
+[node name="Add" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/HalfDollars/VBoxContainer/CenterContainer/HBoxContainer" unique_id=1840073967]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 text = "+"

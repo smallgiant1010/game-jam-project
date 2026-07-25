@@ -26,7 +26,7 @@ public partial class Register : BreakableInteractive
         if(Math.Abs(cashRegister.totalAmount) < .00001f && Math.Abs(cashRegister.changeRequired) < .00001f)
         {
             cashRegister.totalAmount = customer.totalValue;
-            cashRegister.changeRequired = customer.totalValue - customer.totalValue;
+            cashRegister.changeRequired = customer.totalValue - customer.payAmount;
         }
     }
 
