@@ -19,11 +19,4 @@ public partial class Coworker : Enemy
 	{
 		// do nothing
 	}
-
-	public override void getRandNode()
-	{
-		// do nothing
-	}
-
-
 }
