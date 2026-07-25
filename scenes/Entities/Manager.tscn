@@ -8,6 +8,9 @@ size = Vector2(115, 118)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vnoir"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fcclx"]
+size = Vector2(39, 49)
+
 [node name="Manager" type="CharacterBody2D" unique_id=1981743570]
 script = ExtResource("1_8tl6f")
 
@@ -25,3 +28,16 @@ shape = SubResource("RectangleShape2D_wywcd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackZone" unique_id=1925711679]
 scale = Vector2(30, 30)
 shape = SubResource("CircleShape2D_vnoir")
+
+[node name="projectile" type="Area2D" parent="." unique_id=813293479]
+
+[node name="Sprite2D" type="Sprite2D" parent="projectile" unique_id=2056473091]
+position = Vector2(-42, -37.5)
+scale = Vector2(0.34375, 0.4140625)
+texture = ExtResource("2_trvrl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="projectile" unique_id=664246282]
+position = Vector2(-42.5, -37.5)
+shape = SubResource("RectangleShape2D_fcclx")
+
+[connection signal="body_entered" from="attackZone" to="." method="_on_attack_zone_body_entered"]

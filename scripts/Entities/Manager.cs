@@ -1,8 +1,10 @@
 using Godot;
 using System;
 
-public partial class Manager : Node2D
+public partial class Manager : CharacterBody2D
 {
+
+   [Export] private PackedScene projectileScene;
    // Called when the node enters the scene tree for the first time.
    public override void _Ready()
    {
@@ -15,6 +17,17 @@ public partial class Manager : Node2D
 
    private void on_attack_zone_body_entered(Node2D body)
    {
-      
+      if (body is Player player)
+      {
+
+      }
+   }
+
+   private void ShootProjectile(Vector2 fromPosition, Vector2 toPosition)
+   {
+      var projectile = projectileScene.Instantiate<ManagerProjectile>();
+      projectile.GlobalPosition = fromPosition;
+      projectile.Direction = (toPosition - fromPosition).Normalized();
+      GetTree().Root.AddChild(projectile);
    }
 }
