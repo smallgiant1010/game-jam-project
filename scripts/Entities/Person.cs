@@ -74,8 +74,7 @@ public partial class Person : Customer
          itemsBought += buyNum;
          totalValue += valueBought;
          numVisited += 1;
+         payAmount = (int) Math.Ceiling(totalValue / 10) * 10;
       }
    }
-   
-
 }

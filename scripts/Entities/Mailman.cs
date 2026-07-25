@@ -6,9 +6,11 @@ public partial class Mailman : CharacterBody2D
 {
    [Export] private Timer spawnTimer;
    [Export] private Timer stayTimer;
+   [Export] private Node2D spawnPoint;
    // Called when the node enters the scene tree for the first time.
    public override void _Ready()
    {
+      GlobalPosition = spawnPoint.GlobalPosition;
       spawnTimer.Timeout += OnSpawnTimerTimeout;
       stayTimer.Timeout += OnStayTimerTimeout;
       spawnTimer.Start();
