@@ -10,7 +10,7 @@ public partial class Player : CharacterBody2D
 	[Export] public float decay = 1;
 	[Export] public int live = 3;
 	private RayCast2D raycast;
-	private Timer stunTimer;
+	public Timer stunTimer;
 	private Area2D hurtbox;
 	public override void _Ready()
 	{
@@ -37,13 +37,13 @@ public partial class Player : CharacterBody2D
 		// pause if ur in lounge
 
 		health -= 1 * decay;
-		// GD.Print(decay);
+		GD.Print(health);
 	}
 	public override void _Process(double delta)
 	{
 		if (health > maxHealth) health = maxHealth; // health capped
 
-		if (health <= 0) GD.Print("you lost lmao what a loser"); // transform
+		if (health <= 0) GD.Print("you lost lmao what a loser"); // transform, ray grows in size and rotates rapidly
 
 		if (Input.IsActionJustPressed("interact"))
 		{

@@ -14,8 +14,9 @@ public partial class Karen : Enemy
 	{
 		if (raycast.IsColliding())
 		{
-			var collider = raycast.GetCollider();
-			if (collider is Player player)
+			var collider = raycast.GetCollider(0);
+			GD.Print(collider);
+			if (collider is Area2D area && area.GetParent() is Player player)
 			{
 				aggro.Start();
 				aoe.SetDeferred("monitoring", true);
@@ -52,7 +53,7 @@ public partial class Karen : Enemy
 		if (area.GetParent() is Player player)
 		{
 			player.decay += 1;
-			GD.Print("Decay now: ", player.decay);
+			GD.Print("Health now: ", player.health);
 		}
 	}
 

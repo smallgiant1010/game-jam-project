@@ -9,6 +9,8 @@ size = Vector2(15, 16)
 [sub_resource type="CircleShape2D" id="CircleShape2D_md0e3"]
 radius = 43.104523
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y3ltu"]
+
 [node name="karen" type="CharacterBody2D" unique_id=859042563 node_paths=PackedStringArray("goal", "navi", "aoe")]
 script = ExtResource("2_2ylbg")
 goal = NodePath("Area2D")
@@ -40,8 +42,12 @@ target_desired_distance = 3.0
 path_postprocessing = 1
 debug_enabled = true
 
-[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1462810622]
+[node name="RayCast2D" type="ShapeCast2D" parent="." unique_id=740513940]
+shape = SubResource("RectangleShape2D_y3ltu")
 target_position = Vector2(150, 0)
+max_results = 1
+collision_mask = 16
+collide_with_areas = true
 
 [node name="aggro" type="Timer" parent="." unique_id=142111285]
 wait_time = 10.0

@@ -24,7 +24,7 @@ shape = SubResource("CapsuleShape2D_kyxod")
 
 [node name="hurtbox" type="Area2D" parent="." unique_id=245300293]
 collision_layer = 16
-collision_mask = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox" unique_id=1257168568]
 shape = SubResource("CapsuleShape2D_y3ltu")
@@ -36,6 +36,7 @@ collision_mask = 4
 collide_with_areas = true
 
 [node name="StunTimer" type="Timer" parent="." unique_id=2069087215]
+wait_time = 3.0
 one_shot = true
 
 [node name="PatienceDecay" type="Timer" parent="." unique_id=13257338]
