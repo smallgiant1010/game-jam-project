@@ -26,4 +26,8 @@ shape = SubResource("RectangleShape2D_qfw0p")
 scale = Vector2(20, 20)
 shape = SubResource("CircleShape2D_fcclx")
 
+[node name="Timer" type="Timer" parent="." unique_id=1064654562]
+wait_time = 1.5
+
 [connection signal="body_entered" from="buyZone" to="." method="_on_buy_zone_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
