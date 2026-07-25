@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="2_4ra3w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xayay"]
-size = Vector2(15, 16)
+size = Vector2(8, 8)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_md0e3"]
 radius = 11.0
@@ -12,6 +12,8 @@ radius = 11.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xayay"]
 
 [node name="enemy" type="CharacterBody2D" unique_id=859042563 node_paths=PackedStringArray("goal", "navi", "aoe")]
+collision_layer = 32
+collision_mask = 17
 script = ExtResource("1_md0e3")
 goal = NodePath("Area2D")
 navi = NodePath("NavigationAgent2D")

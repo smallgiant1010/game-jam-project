@@ -17,9 +17,9 @@ public partial class OldMan : Enemy
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if (raycast.IsColliding())
+		if (shapecast.IsColliding())
 		{
-			var collider = raycast.GetCollider(0);
+			var collider = shapecast.GetCollider(0);
 			GD.Print(collider);
 			if (collider is Area2D area && area.GetParent() is Player player)
 			{
