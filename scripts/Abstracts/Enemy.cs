@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public partial class Enemy : CharacterBody2D
 {
    public float Speed = 300.0f;
-   [Export] public Node2D goal = null;
+   public Node2D goal = null;
    [Export] protected NavigationAgent2D navi;
    [Export] protected Area2D aoe;
    protected ShapeCast2D shapecast;
