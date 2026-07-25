@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://m7ci1l3rkul7"]
 
 [ext_resource type="Script" uid="uid://bhoy5nl5c7ylt" path="res://scripts/TaskRelated/Register.cs" id="1_ed3qv"]
+[ext_resource type="PackedScene" uid="uid://bb53utmxncygd" path="res://scenes/UI/cash_register.tscn" id="2_dubfy"]
 [ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="2_vu6ta"]
-[ext_resource type="PackedScene" uid="uid://cfaawye43obvj" path="res://scenes/Misc/navi_node.tscn" id="3_ldxsj"]
+[ext_resource type="PackedScene" uid="uid://cpjsfc028e534" path="res://scenes/Misc/navi_node.tscn" id="3_ldxsj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ed3qv"]
 resource_name = "Placeholder Tiles"
@@ -142,6 +143,7 @@ sources/0 = SubResource("TileSetAtlasSource_ed3qv")
 
 [node name="Register" type="Node2D" unique_id=540552706]
 script = ExtResource("1_ed3qv")
+cashRegisterUI = ExtResource("2_dubfy")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=399941749]
 tile_map_data = PackedByteArray(0, 0, 1, 0, 0, 0, 0, 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 4, 0, 0, 0, 0, 0, 1, 0, 0, 0, 5, 0, 4, 0, 0, 0, 0, 0, 2, 0, 0, 0, 5, 0, 4, 0, 0, 0, 1, 0, 2, 0, 0, 0, 5, 0, 4, 0, 0, 0)
