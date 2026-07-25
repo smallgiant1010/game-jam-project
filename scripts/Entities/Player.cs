@@ -21,7 +21,7 @@ public partial class Player : CharacterBody2D
 
    private enum toolType{ Mop, Wrench, None }
    private toolType currentTool;
-   private List<Tool> tools;
+   private List<Tool> tools = new List<Tool>();
    public override void _Ready()
    {
       raycast = GetNode<RayCast2D>("RayCast2D");

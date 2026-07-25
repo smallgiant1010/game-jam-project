@@ -22,7 +22,7 @@ public partial class Thief : Enemy
       {
          for (int i = 0; i < shapecast.GetCollisionCount(); i++)
          {
-            if (shapecast.GetCollider(i) is Person person)
+            if (shapecast.GetCollider(i) is Player player)
             {
                currentState = State.Caught;
                //add box dropping animation
@@ -45,7 +45,7 @@ public partial class Thief : Enemy
 
    private void _on_panic_zone_body_entered(Node2D body)
    {
-      if (body is Person person)
+      if (body is Player player)
       {
          currentState = State.Fleeing;
          navi.TargetPosition = navNodes[navNodes.Count - 1].GlobalPosition;
