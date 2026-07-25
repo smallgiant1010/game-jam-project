@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://e0mwkb1laf3l"]
+
+[ext_resource type="Script" uid="uid://bkj7gtdv3dskg" path="res://scripts/Abstracts/Item.cs" id="1_m6mfv"]
+
+[node name="Item" type="Node" unique_id=1275768529 node_paths=PackedStringArray("buff")]
+script = ExtResource("1_m6mfv")
+buff = NodePath("buff duration")
+
+[node name="buff duration" type="Timer" parent="." unique_id=1355001378]
+wait_time = 0.05
+
+[connection signal="timeout" from="buff duration" to="." method="_on_buff_duration_timeout"]

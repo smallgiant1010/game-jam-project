@@ -45,8 +45,10 @@ one_shot = true
 autostart = true
 
 [node name="Mop" parent="." unique_id=448990267 instance=ExtResource("3_chgf7")]
+visible = false
 
 [node name="Wrench" parent="." unique_id=362196883 instance=ExtResource("4_kk10u")]
+visible = false
 
 [connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
 [connection signal="timeout" from="PatienceDecay" to="." method="_on_patience_decay_timeout"]
