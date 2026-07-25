@@ -159,9 +159,9 @@ public partial class SpawnManager : Node2D
 		}
 	}
 	
-	public void ChangeSpawnProbability(int probability)
+	public void ChangeSpawnProbability(double probability)
 	{
-		spawnProbability *= probability;
+		spawnProbability = (int)(spawnProbability * probability);
 	}
 
 	public override void _Process(double delta)
