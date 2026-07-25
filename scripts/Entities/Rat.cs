@@ -13,8 +13,8 @@ public partial class Rat : Enemy
 
    public void Caught()
    {
-      GD.Print("dadada");
       // SpawnManager.Instance.ChangeSpawnProbability(2);
+      Market.Instance.RemoveEnemy(id);
       QueueFree();
    }
 

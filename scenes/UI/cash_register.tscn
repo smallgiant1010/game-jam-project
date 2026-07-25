@@ -1,0 +1,219 @@
+[gd_scene format=3 uid="uid://bb53utmxncygd"]
+
+[ext_resource type="Script" uid="uid://btpseab41lt4d" path="res://scripts/UIRelated/CashRegister.cs" id="1_utkbd"]
+
+[node name="CashRegister" type="Control" unique_id=1687348679 node_paths=PackedStringArray("denominations", "totalCost", "amountGiven", "closeButton_", "transactionButton_")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_utkbd")
+denominations = [NodePath("VBoxContainer/MarginContainer/HBoxContainer/HalfDollars"), NodePath("VBoxContainer/MarginContainer/HBoxContainer/Quarters"), NodePath("VBoxContainer/MarginContainer/HBoxContainer/Dimes"), NodePath("VBoxContainer/MarginContainer/HBoxContainer/Nickels"), NodePath("VBoxContainer/MarginContainer/HBoxContainer/Pennies")]
+totalCost = NodePath("VBoxContainer/Total Cost")
+amountGiven = NodePath("VBoxContainer/Amount Given")
+closeButton_ = NodePath("Close")
+transactionButton_ = NodePath("VBoxContainer/CenterContainer/CompleteTransaction")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1313100797]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 800.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.06693592, 0.31862423, 0.17822355, 1)
+
+[node name="Close" type="Button" parent="." unique_id=314601749]
+layout_mode = 0
+offset_left = 1250.0
+offset_top = 10.0
+offset_right = 1268.0
+offset_bottom = 41.0
+text = "X"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=348325760]
+custom_minimum_size = Vector2(0, 800)
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 800.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Total Cost" type="Label" parent="VBoxContainer" unique_id=1742476934]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Total Amount: $00.00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Amount Given" type="Label" parent="VBoxContainer" unique_id=1868809392]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Change Required: $00.00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer" unique_id=1220380241]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="CompleteTransaction" type="Button" parent="VBoxContainer/CenterContainer" unique_id=1256717502]
+custom_maximum_size = Vector2(200, -1)
+layout_mode = 2
+text = "Complete Transaction"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=1613807517]
+custom_minimum_size = Vector2(1280, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer" unique_id=700728785]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+theme_override_constants/separation = 57
+
+[node name="HalfDollars" type="PanelContainer" parent="VBoxContainer/MarginContainer/HBoxContainer" unique_id=732020738]
+custom_minimum_size = Vector2(200, 0)
+custom_maximum_size = Vector2(-1, 250)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/HalfDollars" unique_id=903969614]
+layout_mode = 2
+
+[node name="Denomination" type="ColorRect" parent="VBoxContainer/MarginContainer/HBoxContainer/HalfDollars/VBoxContainer" unique_id=576186424]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/HalfDollars/VBoxContainer" unique_id=783817077]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/HalfDollars/VBoxContainer/CenterContainer" unique_id=581963728]
+layout_mode = 2
+
+[node name="Remove" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/HalfDollars/VBoxContainer/CenterContainer/HBoxContainer" unique_id=1483698203]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = "-"
+
+[node name="Add" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/HalfDollars/VBoxContainer/CenterContainer/HBoxContainer" unique_id=1840073967]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = "+"
+
+[node name="Quarters" type="PanelContainer" parent="VBoxContainer/MarginContainer/HBoxContainer" unique_id=991679896]
+custom_minimum_size = Vector2(200, 0)
+custom_maximum_size = Vector2(-1, 250)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/Quarters" unique_id=1604402644]
+layout_mode = 2
+
+[node name="Denomination" type="ColorRect" parent="VBoxContainer/MarginContainer/HBoxContainer/Quarters/VBoxContainer" unique_id=870518798]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/Quarters/VBoxContainer" unique_id=1931314070]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/Quarters/VBoxContainer/CenterContainer" unique_id=349553991]
+layout_mode = 2
+
+[node name="Remove" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/Quarters/VBoxContainer/CenterContainer/HBoxContainer" unique_id=1165065214]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = "-"
+
+[node name="Add" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/Quarters/VBoxContainer/CenterContainer/HBoxContainer" unique_id=829498761]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = "+"
+
+[node name="Dimes" type="PanelContainer" parent="VBoxContainer/MarginContainer/HBoxContainer" unique_id=824464413]
+custom_minimum_size = Vector2(200, 0)
+custom_maximum_size = Vector2(-1, 250)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/Dimes" unique_id=2087700305]
+layout_mode = 2
+
+[node name="Denomination" type="ColorRect" parent="VBoxContainer/MarginContainer/HBoxContainer/Dimes/VBoxContainer" unique_id=1164285034]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/Dimes/VBoxContainer" unique_id=742356378]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/Dimes/VBoxContainer/CenterContainer" unique_id=914818828]
+layout_mode = 2
+
+[node name="Remove" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/Dimes/VBoxContainer/CenterContainer/HBoxContainer" unique_id=961978477]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = "-"
+
+[node name="Add" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/Dimes/VBoxContainer/CenterContainer/HBoxContainer" unique_id=137957208]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = "+"
+
+[node name="Nickels" type="PanelContainer" parent="VBoxContainer/MarginContainer/HBoxContainer" unique_id=468152408]
+custom_minimum_size = Vector2(200, 0)
+custom_maximum_size = Vector2(-1, 250)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/Nickels" unique_id=2102538664]
+layout_mode = 2
+
+[node name="Denomination" type="ColorRect" parent="VBoxContainer/MarginContainer/HBoxContainer/Nickels/VBoxContainer" unique_id=922906306]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/Nickels/VBoxContainer" unique_id=1832934099]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/Nickels/VBoxContainer/CenterContainer" unique_id=1477940323]
+layout_mode = 2
+
+[node name="Remove" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/Nickels/VBoxContainer/CenterContainer/HBoxContainer" unique_id=55817227]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = "-"
+
+[node name="Add" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/Nickels/VBoxContainer/CenterContainer/HBoxContainer" unique_id=64458773]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = "+"
+
+[node name="Pennies" type="PanelContainer" parent="VBoxContainer/MarginContainer/HBoxContainer" unique_id=833749417]
+custom_minimum_size = Vector2(200, 0)
+custom_maximum_size = Vector2(-1, 250)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/Pennies" unique_id=1699650034]
+layout_mode = 2
+
+[node name="Denomination" type="ColorRect" parent="VBoxContainer/MarginContainer/HBoxContainer/Pennies/VBoxContainer" unique_id=503304460]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/Pennies/VBoxContainer" unique_id=210076771]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/Pennies/VBoxContainer/CenterContainer" unique_id=29147573]
+layout_mode = 2
+
+[node name="Remove" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/Pennies/VBoxContainer/CenterContainer/HBoxContainer" unique_id=1157655289]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = "-"
+
+[node name="Add" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/Pennies/VBoxContainer/CenterContainer/HBoxContainer" unique_id=219202272]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = "+"
