@@ -24,7 +24,7 @@ public partial class TaskList : Control
 	{
 		Hide();
 		InitializeTasks();
-		ConnectSignals();
+		GameManager.Instance.StartGame += ConnectSignals;
 	}
 
 	private void InitializeTasks()

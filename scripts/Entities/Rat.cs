@@ -9,6 +9,7 @@ public partial class Rat : Enemy
    {
       base._Ready();
       SpawnManager.Instance.ChangeSpawnProbability(0.5);
+      GD.Print(goal);
    }
 
    public void Caught()

@@ -9,6 +9,7 @@ size = Vector2(116, 117)
 [sub_resource type="CircleShape2D" id="CircleShape2D_fcclx"]
 
 [node name="Person" type="CharacterBody2D" unique_id=805093475]
+scale = Vector2(0.1, 0.1)
 script = ExtResource("1_0vurh")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1350214659]

@@ -6,19 +6,20 @@
 [ext_resource type="PackedScene" uid="uid://c1lr6niu1iobq" path="res://scenes/Tools/Wrench.tscn" id="4_kk10u"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kyxod"]
-radius = 24.0
-height = 120.0
+radius = 7.0
+height = 14.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y3ltu"]
-radius = 24.0
-height = 120.0
+radius = 7.0
+height = 14.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1643606880]
 script = ExtResource("1_3vyb7")
+speed = 200
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=344455426]
-position = Vector2(0, 1.499999)
-scale = Vector2(0.359375, 0.9140625)
+position = Vector2(0.5000005, 0)
+scale = Vector2(0.101562515, 0.09375)
 texture = ExtResource("2_qhqgy")
 
 [node name="hitbox" type="CollisionShape2D" parent="." unique_id=213046018]
@@ -33,7 +34,7 @@ shape = SubResource("CapsuleShape2D_y3ltu")
 debug_color = Color(0.8358007, 0.35688683, 0.4111688, 0.41960785)
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=348714379]
-target_position = Vector2(64, 0)
+target_position = Vector2(28, 0)
 collision_mask = 4
 collide_with_areas = true
 
@@ -45,8 +46,19 @@ one_shot = true
 autostart = true
 
 [node name="Mop" parent="." unique_id=448990267 instance=ExtResource("3_chgf7")]
+visible = false
 
 [node name="Wrench" parent="." unique_id=362196883 instance=ExtResource("4_kk10u")]
+visible = false
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=623711668]
+zoom = Vector2(5, 5)
+limit_enabled = false
+limit_left = -100
+limit_top = 100
+limit_right = 100
+limit_bottom = -100
+position_smoothing_speed = 10.0
 
 [connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
 [connection signal="timeout" from="PatienceDecay" to="." method="_on_patience_decay_timeout"]

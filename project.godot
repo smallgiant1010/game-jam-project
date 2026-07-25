@@ -17,10 +17,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+SceneManager="*uid://tvekj8fnmjd6"
 DayTimer="*uid://m64ir6nacom7"
 GameManager="*uid://upl0ulgsf05m"
 SpawnManager="*uid://dvk6o05mvqnye"
-SceneManager="*uid://tvekj8fnmjd6"
 Market="*uid://c2cdvmuuw1s37"
 
 [display]
@@ -97,4 +97,5 @@ tasklist={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"

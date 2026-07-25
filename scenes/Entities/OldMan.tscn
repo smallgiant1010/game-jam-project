@@ -7,17 +7,16 @@
 size = Vector2(8, 8)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_md0e3"]
-radius = 11.0
+radius = 4.6785564
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xayay"]
 
-[node name="OldMan" type="CharacterBody2D" unique_id=859042563 node_paths=PackedStringArray("stunTimer", "cdTimer", "goal", "navi", "aoe")]
+[node name="OldMan" type="CharacterBody2D" unique_id=859042563 node_paths=PackedStringArray("stunTimer", "cdTimer", "navi", "aoe")]
 collision_layer = 32
 collision_mask = 17
 script = ExtResource("1_oe1a6")
 stunTimer = NodePath("selfStun")
 cdTimer = NodePath("CDTimer")
-goal = NodePath("Area2D")
 navi = NodePath("NavigationAgent2D")
 aoe = NodePath("Area2D")
 
@@ -26,9 +25,9 @@ shape = SubResource("RectangleShape2D_xayay")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=312614072]
 modulate = Color(0.13725491, 0.043137256, 1, 1)
-position = Vector2(1.9073486e-06, -1.9073486e-06)
+position = Vector2(-0.15255594, 0.4195249)
 rotation = -3.1415927
-scale = Vector2(0.15625, 0.15625)
+scale = Vector2(0.0632866, 0.06269069)
 texture = ExtResource("2_oapj0")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1825357227]
@@ -50,7 +49,7 @@ debug_enabled = true
 
 [node name="RayCast2D" type="ShapeCast2D" parent="." unique_id=643038667]
 shape = SubResource("CapsuleShape2D_xayay")
-target_position = Vector2(150, 0)
+target_position = Vector2(25, 0)
 max_results = 1
 collision_mask = 16
 collide_with_areas = true
