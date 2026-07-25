@@ -1,17 +1,21 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public partial class Enemy : CharacterBody2D
 {
 	public float Speed = 300.0f;
 	[Export] public Node2D goal = null;
+	[Export] public int totalNodes = 7;
 	[Export] protected NavigationAgent2D navi;
 	[Export] protected Area2D aoe;
 	public LinkedListNode<Enemy> id;
 	protected ShapeCast2D raycast;
 	protected Timer aggro; // can also be used to trigger hazard, i.e aggro timer runs out, kid spills drink on floor
 	protected List<Node2D> navNodes = new List<Node2D>();
+	protected int nodesVisited = 0;
+	protected Random rnd = new Random();
 
 	public override void _Ready()
 	{
@@ -48,10 +52,17 @@ public partial class Enemy : CharacterBody2D
 	}
 
 
-	public void getRandNode()
+	public virtual void getRandNode()
 	{
-		Random rnd = new Random();
-		goal = navNodes[rnd.Next(0, navNodes.Count)];
+		nodesVisited++;
+		if (nodesVisited != totalNodes)
+		{
+			goal = navNodes[rnd.Next(0, navNodes.Count)]; // can leave early, which is intentional
+		}
+		else // visited alloted nodes, reached its "max" lifetime
+		{
+			goal = navNodes[navNodes.Count - 1];
+		}
 		navi.TargetPosition = goal.GlobalPosition;
 		GD.Print(goal);
 	}

@@ -18,14 +18,7 @@ public partial class Player : CharacterBody2D
 		stunTimer = GetNode<Timer>("StunTimer");
 		hurtbox = GetNode<Area2D>("hurtbox");
 	}
-	// private void _on_hurtbox_area_entered(Node2D body) // CHECK OBJECT NAME FIRST, FOR NOW IT WILL ALWAYS PERMA STUN
-	// {
-	// 	isStunned = true;
-	// 	hurtbox.SetDeferred("monitoring", false);
 
-	// 	stunTimer.Start();
-	// 	GD.Print(body.Name + " entered");
-	// }
 	private void _on_stun_timer_timeout()
 	{
 		isStunned = false;
