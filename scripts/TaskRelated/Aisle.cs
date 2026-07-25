@@ -26,6 +26,7 @@ public partial class Aisle : Node2D
 			hasSignaled = false;
 		}
 		currentProductCount = Math.Max(0, currentProductCount + amount);
+		currentProductCount = Math.Min(maxProductCount, currentProductCount);
 	}
 
     public override void _Process(double delta)
