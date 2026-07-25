@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Customer : CharacterBody2D
 {
@@ -10,6 +11,11 @@ public partial class Customer : CharacterBody2D
    protected RayCast2D raycast;
    protected Node2D currentNavTarget;
    public const float Speed = 300.0f;
+
+   public int itemsBought;
+   public float totalValue;
+
+   private LinkedListNode<Customer> id;
 
    public override void _Ready()
    {
@@ -22,5 +28,13 @@ public partial class Customer : CharacterBody2D
       Random rnd = new Random();
       currentNavTarget = navNodes[rnd.Next(0, navNodes.Count)];
       navi.TargetPosition = currentNavTarget.GlobalPosition;
+   }
+
+   public override void _PhysicsProcess(double delta)
+   {
+      if (currentNavTarget == navNodes[navNodes.Count - 1] && navi.IsNavigationFinished())
+      {
+         QueueFree();
+      }
    }
 }

@@ -6,7 +6,6 @@ public partial class Person : Customer
 
    [Export] int max;
 
-   private int itemsBought;
    // Called when the node enters the scene tree for the first time.
    public override void _Ready()
    {
@@ -40,15 +39,19 @@ public partial class Person : Customer
       {
          Random rnd = new Random();
          int buyNum = rnd.Next(1, max);
+         float valueBought = 0;
          if (body is Aisle)
          {
             ((Aisle)body).Interact(buyNum);
+            valueBought = ((Aisle)body).productValue;
          }
          if (body is Fridge)
          {
             ((Fridge)body).Interact(buyNum);
+            valueBought = ((Aisle)body).productValue;
          }
          itemsBought += buyNum;
+         totalValue += valueBought;
       }
    }
    

@@ -40,4 +40,9 @@ texture = ExtResource("2_trvrl")
 position = Vector2(-42.5, -37.5)
 shape = SubResource("RectangleShape2D_fcclx")
 
+[node name="fireTimer" type="Timer" parent="." unique_id=1755646829]
+wait_time = 2.0
+
 [connection signal="body_entered" from="attackZone" to="." method="_on_attack_zone_body_entered"]
+[connection signal="body_exited" from="attackZone" to="." method="_on_attack_zone_body_exited"]
+[connection signal="timeout" from="fireTimer" to="." method="_on_fire_timer_timeout"]
