@@ -29,8 +29,8 @@ public partial class Player : CharacterBody2D
 		raycast = GetNode<RayCast2D>("RayCast2D");
 		stunTimer = GetNode<Timer>("StunTimer");
 		hurtbox = GetNode<Area2D>("hurtbox");
-		mop = GetNode<Mop>("mop");
-		wrench = GetNode<Wrench>("wrench");
+		mop = GetNode<Mop>("Mop");
+		wrench = GetNode<Wrench>("Wrench");
 		tasklist = GetNode<Control>("../tasklist/TaskList");
 		qteScene = GD.Load<PackedScene>("res://scenes/QTE/quick_time_slider.tscn");
 		tools.Add(mop);
