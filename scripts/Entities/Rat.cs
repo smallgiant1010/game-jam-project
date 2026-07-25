@@ -4,27 +4,26 @@ using System;
 public partial class Rat : Enemy
 {
    // Called when the node enters the scene tree for the first time.
+   public bool stunned = false;
    public override void _Ready()
    {
       base._Ready();
       SpawnManager.Instance.ChangeSpawnProbability(0.5);
-
    }
 
    public void Caught()
    {
-      SpawnManager.Instance.ChangeSpawnProbability(2);
+      // SpawnManager.Instance.ChangeSpawnProbability(2);
       Market.Instance.RemoveEnemy(id);
+      GD.Print("dadada");
+      // SpawnManager.Instance.ChangeSpawnProbability(2);
       QueueFree();
    }
 
    // Called every frame. 'delta' is the elapsed time since the previous frame.
-   public override void _Process(double delta)
-   {
-   }
 
    public override void _PhysicsProcess(double delta)
    {
-      base._PhysicsProcess(delta);
+      if(!stunned) base._PhysicsProcess(delta);
    }
 }

@@ -21,6 +21,7 @@ public partial class Customer : CharacterBody2D
 
    public int itemsBought;
    public float totalValue;
+   public float payAmount;
 
    public LinkedListNode<Customer> id;
 

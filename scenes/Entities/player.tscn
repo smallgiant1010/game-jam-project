@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://ch7esykoj1x1l" path="res://scripts/Entities/Player.cs" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="2_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://x02buufc2rrw" path="res://scenes/Tools/Mop.tscn" id="3_chgf7"]
+[ext_resource type="PackedScene" uid="uid://c1lr6niu1iobq" path="res://scenes/Tools/Wrench.tscn" id="4_kk10u"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kyxod"]
 radius = 24.0
@@ -41,6 +43,10 @@ one_shot = true
 
 [node name="PatienceDecay" type="Timer" parent="." unique_id=13257338]
 autostart = true
+
+[node name="Mop" parent="." unique_id=448990267 instance=ExtResource("3_chgf7")]
+
+[node name="Wrench" parent="." unique_id=362196883 instance=ExtResource("4_kk10u")]
 
 [connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
 [connection signal="timeout" from="PatienceDecay" to="." method="_on_patience_decay_timeout"]
