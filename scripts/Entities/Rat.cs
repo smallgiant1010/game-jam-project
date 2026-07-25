@@ -8,6 +8,13 @@ public partial class Rat : Enemy
    {
       base._Ready();
       SpawnManager.Instance.ChangeSpawnProbability(0.5);
+
+   }
+
+   public void Caught()
+   {
+      SpawnManager.Instance.ChangeSpawnProbability(2);
+      QueueFree();
    }
 
    // Called every frame. 'delta' is the elapsed time since the previous frame.

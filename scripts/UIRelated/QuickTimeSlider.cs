@@ -6,6 +6,8 @@ public partial class QuickTimeSlider : Control
 	[Export] private ColorRect wholeZone_;
 	[Export] private ColorRect validZone_;
 	[Export] private ColorRect cursor_;
+	[Signal]
+	public delegate void FinishEventHandler(bool isSuccessful);
 	private float minWidth, maxWidth;
 	private float maxDist;
 	private float angle = 0;
@@ -50,11 +52,11 @@ public partial class QuickTimeSlider : Control
 			float validZoneX = validZone_.Position.X;
 			if (cursorX >= validZoneX && cursorX <= validZoneX + validZone_.Size.X)
 			{
-				GD.Print("CONGRATS");
+				EmitSignal("Finish", true);
 			}
 			else
 			{
-				GD.Print("YOU SUCK");
+				EmitSignal("Finish", false);
 			}
 			QueueFree();
 		}

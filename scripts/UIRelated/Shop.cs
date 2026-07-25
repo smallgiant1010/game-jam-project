@@ -4,10 +4,16 @@ using System;
 public partial class Shop : Control
 {
 	[Export] private Button nextDayButton_;
-    public override void _Ready()
-    {
+	public override void _Ready()
+	{
 		nextDayButton_.Pressed += OnPressed;
+	}
+
+    public override void _ExitTree()
+    {
+        nextDayButton_.Pressed -= OnPressed;
     }
+
 
 	public void OnPressed()
 	{

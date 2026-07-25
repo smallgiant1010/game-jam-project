@@ -13,7 +13,7 @@ public partial class Enemy : CharacterBody2D
 
    [Export] protected Godot.Collections.Array<Node2D> navNodes = new Godot.Collections.Array<Node2D>();
 
-   private LinkedListNode<Enemy> id;
+   public LinkedListNode<Enemy> id;
 
    public override void _Ready()
    {

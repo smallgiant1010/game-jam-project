@@ -1,8 +1,27 @@
 [gd_scene format=3 uid="uid://dvk6o05mvqnye"]
 
 [ext_resource type="Script" uid="uid://gyb56i4ig2ry" path="res://scripts/Managers/SpawnManager.cs" id="1_h6m58"]
+[ext_resource type="PackedScene" uid="uid://df310vjxgowg7" path="res://scenes/Entities/Person.tscn" id="2_1pulc"]
+[ext_resource type="PackedScene" uid="uid://djxtsqk0ihsk0" path="res://scenes/Entities/PersonAndDog.tscn" id="3_fisd3"]
+[ext_resource type="PackedScene" uid="uid://c02nm44ystwrj" path="res://scenes/Entities/Rat.tscn" id="4_345w7"]
+[ext_resource type="PackedScene" uid="uid://ca875gurjw5cp" path="res://scenes/Entities/Kid.tscn" id="5_e4468"]
+[ext_resource type="PackedScene" uid="uid://dek2444tf6gmu" path="res://scenes/Entities/OldMan.tscn" id="6_m8ndy"]
+[ext_resource type="PackedScene" uid="uid://bxm2olyhlxfbv" path="res://scenes/Entities/karen.tscn" id="7_lvwwb"]
+[ext_resource type="PackedScene" uid="uid://3aj0gr8o6sgq" path="res://scenes/Entities/Thief.tscn" id="8_wrcxk"]
+[ext_resource type="PackedScene" uid="uid://cb0ur3vdf28xq" path="res://scenes/Entities/player.tscn" id="9_fisd3"]
 
-[node name="SpawnManager" type="Node2D" unique_id=1742120670]
+[node name="SpawnManager" type="Node2D" unique_id=1742120670 node_paths=PackedStringArray("timer_")]
 script = ExtResource("1_h6m58")
+timer_ = NodePath("Timer")
+scenes = Dictionary[int, PackedScene]({
+0: ExtResource("2_1pulc"),
+1: ExtResource("3_fisd3"),
+2: ExtResource("4_345w7"),
+3: ExtResource("5_e4468"),
+4: ExtResource("6_m8ndy"),
+5: ExtResource("7_lvwwb"),
+6: ExtResource("8_wrcxk")
+})
+player = ExtResource("9_fisd3")
 
 [node name="Timer" type="Timer" parent="." unique_id=845097034]

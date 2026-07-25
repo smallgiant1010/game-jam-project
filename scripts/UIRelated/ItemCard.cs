@@ -21,6 +21,12 @@ public partial class ItemCard : PanelContainer
 		sellButton_.Pressed += OnSellPressed;
 	}
 
+	public override void _ExitTree()
+    {
+        buyButton_.Pressed -= OnBuyPressed;
+		sellButton_.Pressed -= OnSellPressed;
+    }
+
     private void OnSellPressed()
     {
 		--itemCount;

@@ -14,6 +14,13 @@ public partial class Lounge : Area2D
 
 		regenTimer = GetNode<Timer>("Timer");
 	}
+
+    public override void _ExitTree()
+    {
+        BodyEntered -= _on_lounge_body_entered; // cannot detect without it
+		BodyExited -= _on_lounge_body_exited; // cannot detect without it
+    }
+
 	private void _on_lounge_body_entered(Node2D body)
 	{
 		if (body is Player p)
