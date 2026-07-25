@@ -31,16 +31,30 @@ public partial class GameManager : Node2D
 		DayTimer.Instance.Timeout += OnTimerTimeout;
 	}
 
+    public override void _ExitTree()
+    {
+        DayTimer.Instance.Timeout -= OnTimerTimeout;
+    }
+
+
 	private void OnTimerTimeout()
 	{
+		EmitSignal("EndGame");
 		switch(currentDay)
 		{
 			case Day.SATURDAY:
+				if(requiredMoney <= currentMoney)
+				{
+					
+				} else
+				{
+					
+				}
 				break;
 			case Day.FRIDAY:
 				break;
 			default:
-				currentDay += 1;
+				currentDay++;
 				SpawnManager.Instance.customerSpawnProbability -= 10;
 				break;
 		}

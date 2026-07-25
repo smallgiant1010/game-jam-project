@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cpsfuicx155n" path="res://scripts/UIRelated/TaskList.cs" id="1_n83iw"]
 [ext_resource type="PackedScene" uid="uid://c3naflgcogi7r" path="res://scenes/UI/task_item.tscn" id="2_7jy7n"]
 
-[node name="TaskList" type="Control" unique_id=927671662]
+[node name="TaskList" type="Control" unique_id=927671662 node_paths=PackedStringArray("vBoxContainer_")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,6 +11,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_n83iw")
+vBoxContainer_ = NodePath("PanelContainer/MarginContainer/ScrollContainer/VBoxContainer")
+taskScene = ExtResource("2_7jy7n")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=2020746306]
 layout_mode = 0
@@ -37,6 +39,3 @@ layout_mode = 2
 custom_minimum_size = Vector2(350, 1000)
 layout_mode = 2
 theme_override_constants/separation = 10
-
-[node name="Task" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=425152343 instance=ExtResource("2_7jy7n")]
-layout_mode = 2

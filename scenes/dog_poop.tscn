@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bmfu258knl4ko"]
 
 [ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="1_gv3y3"]
-[ext_resource type="Script" uid="uid://dylcf6w6pt8gv" path="res://scenes/DogPoop.cs" id="1_pj0nt"]
+[ext_resource type="Script" uid="uid://dylcf6w6pt8gv" path="res://scripts/DogPoop.cs" id="1_pj0nt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xayay"]
 size = Vector2(49, 36)

@@ -15,7 +15,7 @@ public partial class Customer : CharacterBody2D
    public int itemsBought;
    public float totalValue;
 
-   private LinkedListNode<Customer> id;
+   public LinkedListNode<Customer> id;
 
    public override void _Ready()
    {

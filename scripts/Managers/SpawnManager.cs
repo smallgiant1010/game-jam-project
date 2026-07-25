@@ -8,6 +8,8 @@ public partial class SpawnManager : Node2D
 	public static SpawnManager Instance { private set; get; }
 	private enum Entity
 	{
+		CUSTOMER,
+		CUSTOMER_WITH_DOG,
 		RAT,
 		KID,
 		ELDERLY,
@@ -16,25 +18,34 @@ public partial class SpawnManager : Node2D
 	}
 
 	private record EntityDetails(Entity Name, int Weight);
+	private Node2D spawnPoint_;
 	[Export] private int spawnProbability = 100;
 	public int customerSpawnProbability = 70;
 	private List<List<EntityDetails>> entityProbabilitiesPerDay;
 	private double spawnDelay = 5f;
 	[Export] private Timer timer_;
 	private bool spawning = false;
+	[Export] private Godot.Collections.Dictionary<Entity, PackedScene> scenes;
 
 	public override void _Ready()
 	{
 		entityProbabilitiesPerDay = new(7);
 		InitializeProbabilitiesList();
-		timer_.Timeout += OnTimeout;
 		GameManager.Instance.StartGame += OnStartGame;
 		GameManager.Instance.EndGame += OnEndGame;
+		timer_.Timeout += OnTimeout;
 	}
+
+    public override void _ExitTree()
+    {
+        GameManager.Instance.StartGame -= OnStartGame;
+		GameManager.Instance.EndGame -= OnEndGame;
+    }
 
 	private void OnStartGame()
 	{
 		timer_.Start(spawnDelay);
+		spawnPoint_ = GetTree().CurrentScene.GetNode<Node2D>("Entrance");
 		spawning = true;
 	}
 	
@@ -99,7 +110,7 @@ public partial class SpawnManager : Node2D
 			new EntityDetails(Entity.KAREN, 20),
 			new EntityDetails(Entity.THIEF, 20)
 		];
-		
+
 		entityProbabilitiesPerDay[(int)Day.SATURDAY] =
 		[
 			new EntityDetails(Entity.RAT, 20),
@@ -108,6 +119,7 @@ public partial class SpawnManager : Node2D
 			new EntityDetails(Entity.KAREN, 40),
 			new EntityDetails(Entity.THIEF, 20)
 		];
+
     }
 
 	private void OnTimeout()
@@ -118,14 +130,10 @@ public partial class SpawnManager : Node2D
 			int gachaForType = Random.Shared.Next(100);
 			if (gachaForCustomer <= customerSpawnProbability)
 			{
-				if (gachaForType <= 50)
-				{
-					//spawn regular customer
-				}
-				else
-				{
-					//spawn customer with dog
-				}
+				Customer customer = (gachaForType <= 50) ? scenes[Entity.CUSTOMER].Instantiate<Customer>() : scenes[Entity.CUSTOMER_WITH_DOG].Instantiate<Customer>();
+				LinkedListNode<Customer> id = Market.Instance.AddCustomer(customer);
+				customer.id = id;
+				customer.GlobalPosition = spawnPoint_.GlobalPosition;
 			}
 			else
 			{
@@ -134,19 +142,10 @@ public partial class SpawnManager : Node2D
 					if (gachaForType < ED.Weight)
 					{
 						// spawn enemy
-						switch (ED.Name)
-						{
-							case Entity.ELDERLY:
-								break;
-							case Entity.KID:
-								break;
-							case Entity.KAREN:
-								break;
-							case Entity.THIEF:
-								break;
-							case Entity.RAT:
-								break;
-						}
+						Enemy enemy = scenes[ED.Name].Instantiate<Enemy>();
+						LinkedListNode<Enemy> id = Market.Instance.AddEnemy(enemy);
+						enemy.id = id;
+						enemy.GlobalPosition = spawnPoint_.GlobalPosition;
 					}
 					gachaForCustomer -= ED.Weight;
 				}

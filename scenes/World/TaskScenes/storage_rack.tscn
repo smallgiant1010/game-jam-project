@@ -1,12 +1,11 @@
-[gd_scene format=3 uid="uid://cnws4f4efeg2d"]
+[gd_scene format=3 uid="uid://c2cf55hw1wsvf"]
 
-[ext_resource type="Script" uid="uid://dx4noy2hv22pw" path="res://scripts/TaskRelated/Fridge.cs" id="1_6d8ii"]
-[ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="1_modgs"]
-[ext_resource type="PackedScene" uid="uid://cfaawye43obvj" path="res://scenes/Misc/navi_node.tscn" id="3_fxkio"]
+[ext_resource type="Script" uid="uid://bd5b8pjyxelo4" path="res://scripts/TaskRelated/StorageRack.cs" id="1_eur4x"]
+[ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="2_ncpyq"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fxkio"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3kis4"]
 resource_name = "Placeholder Tiles"
-texture = ExtResource("1_modgs")
+texture = ExtResource("2_ncpyq")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4.136751, -3.5971737, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
@@ -142,17 +141,13 @@ texture = ExtResource("1_modgs")
 7:7/0 = 0
 7:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 3.956892, 3.956892, -8, 8)
 
-[sub_resource type="TileSet" id="TileSet_4ncvg"]
+[sub_resource type="TileSet" id="TileSet_2ikkf"]
 physics_layer_0/collision_layer = 5
-sources/0 = SubResource("TileSetAtlasSource_fxkio")
+sources/0 = SubResource("TileSetAtlasSource_3kis4")
 
-[node name="Fridge" type="Node2D" unique_id=1306735714]
-script = ExtResource("1_6d8ii")
+[node name="StorageRack" type="Node2D" unique_id=314832251]
+script = ExtResource("1_eur4x")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=551317273]
-tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 4, 0, 0, 0, 0, 0, 255, 255, 0, 0, 4, 0, 4, 0, 0, 0)
-tile_set = SubResource("TileSet_4ncvg")
-
-[node name="Timer" type="Timer" parent="." unique_id=1164906692]
-
-[node name="naviNode" parent="." unique_id=1011454801 instance=ExtResource("3_fxkio")]
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1046474010]
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 3, 0, 0, 0, 1, 0, 0, 0, 0, 0, 5, 0, 3, 0, 0, 0)
+tile_set = SubResource("TileSet_2ikkf")

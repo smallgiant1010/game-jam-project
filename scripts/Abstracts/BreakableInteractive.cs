@@ -19,6 +19,11 @@ public partial class BreakableInteractive : Node2D
 		timer_.Timeout += OnTimeout;
 		timer_.Start(breakdownDelay);
 	}
+    public override void _ExitTree()
+    {
+        timer_.Timeout -= OnTimeout;
+    }
+
 	
 	private void OnTimeout()
 	{

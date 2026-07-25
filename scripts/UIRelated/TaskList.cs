@@ -15,7 +15,6 @@ public enum Task
 
 public partial class TaskList : Control
 {
-	public static TaskList Instance { private set; get; }
 	[Export] private VBoxContainer vBoxContainer_;
 	[Export] private PackedScene taskScene;
 	private SortedDictionary<Task, Stack<TaskItem>> tasks;
@@ -23,7 +22,6 @@ public partial class TaskList : Control
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		Instance = this;
 		InitializeTasks();
 		ConnectSignals();
 	}
@@ -50,13 +48,28 @@ public partial class TaskList : Control
 			aisle.RestockRequired += OnEvent;
 			aisle.RestockCompleted += OnCompletion;
 		}
-		
+
 		foreach (BreakableInteractive breakableInteractive in Market.Instance.machines)
 		{
 			breakableInteractive.Breakdown += OnEvent;
 			breakableInteractive.Fixed += OnCompletion;
 		}
 	}
+
+    public override void _ExitTree()
+    {
+        foreach (Aisle aisle in Market.Instance.aisles)
+		{
+			aisle.RestockRequired -= OnEvent;
+			aisle.RestockCompleted -= OnCompletion;
+		}
+
+		foreach (BreakableInteractive breakableInteractive in Market.Instance.machines)
+		{
+			breakableInteractive.Breakdown -= OnEvent;
+			breakableInteractive.Fixed -= OnCompletion;
+		}
+    }
 
 	// Create UI For Each Subscriber Method
 	private void OnEvent(Task task)

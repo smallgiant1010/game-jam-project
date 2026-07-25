@@ -15,6 +15,14 @@ run/main_scene="uid://evnrud14fgw0"
 config/features=PackedStringArray("4.7", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+DayTimer="*uid://m64ir6nacom7"
+GameManager="*uid://upl0ulgsf05m"
+SpawnManager="*uid://dvk6o05mvqnye"
+SceneManager="*uid://tvekj8fnmjd6"
+Market="*uid://c2cdvmuuw1s37"
+
 [display]
 
 window/size/viewport_width=1280
