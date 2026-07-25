@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://cb0ur3vdf28xq"]
+[gd_scene format=3 uid="uid://tplo54fw4f77"]
 
-[ext_resource type="Script" uid="uid://ch7esykoj1x1l" path="res://scripts/Entities/Player.cs" id="1_3vyb7"]
+[ext_resource type="Script" path="res://scripts/Player.cs" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="2_qhqgy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kyxod"]
@@ -13,6 +13,10 @@ height = 120.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1643606880]
 script = ExtResource("1_3vyb7")
+health = null
+maxHealth = null
+decay = null
+isStunned = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=344455426]
 position = Vector2(0, 1.499999)
@@ -24,7 +28,7 @@ shape = SubResource("CapsuleShape2D_kyxod")
 
 [node name="hurtbox" type="Area2D" parent="." unique_id=245300293]
 collision_layer = 16
-collision_mask = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox" unique_id=1257168568]
 shape = SubResource("CapsuleShape2D_y3ltu")
@@ -36,7 +40,6 @@ collision_mask = 4
 collide_with_areas = true
 
 [node name="StunTimer" type="Timer" parent="." unique_id=2069087215]
-wait_time = 3.0
 one_shot = true
 
 [node name="PatienceDecay" type="Timer" parent="." unique_id=13257338]
