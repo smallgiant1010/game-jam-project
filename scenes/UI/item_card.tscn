@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://fun5vssachjh"]
+
+[ext_resource type="Script" uid="uid://drujomfj0hqhr" path="res://scripts/UIRelated/ItemCard.cs" id="1_rplmo"]
+
+[node name="ItemCard" type="PanelContainer" unique_id=928042913]
+script = ExtResource("1_rplmo")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1941192111]
+custom_minimum_size = Vector2(180, 400)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=469763363]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=662174659]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer" unique_id=542180895]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+color = Color(0, 1, 1, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer" unique_id=40959084]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer" unique_id=1611274742]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "asdasdasdasdasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+autowrap_mode = 1
+justification_flags = 131
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1842813359]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=441064858]
+custom_minimum_size = Vector2(75, 25)
+layout_mode = 2
+text = "Sell"
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1906511564]
+custom_minimum_size = Vector2(75, 25)
+layout_mode = 2
+text = "Buy:0"

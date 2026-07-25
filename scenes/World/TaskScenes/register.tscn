@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bhoy5nl5c7ylt" path="res://scripts/TaskRelated/Register.cs" id="1_ed3qv"]
 [ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="2_vu6ta"]
+[ext_resource type="PackedScene" uid="uid://cfaawye43obvj" path="res://scenes/Misc/navi_node.tscn" id="3_ldxsj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kyxod"]
 radius = 80.0
@@ -154,3 +155,7 @@ shape = SubResource("CircleShape2D_kyxod")
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=399941749]
 tile_map_data = PackedByteArray("AAD+//7/AAADAAIAAAD+////AAADAAIAAAD/////AAADAAIAAAAAAP//AAADAAIAAAABAP//AAADAAIAAAABAP7/AAADAAIAAAAAAP7/AAADAAIAAAD///7/AAADAAIAAAD9/wAAAAADAAIAAAD9/wEAAAADAAIAAAD9/wIAAAAAAAcAAAD+/wIAAAADAAIAAAD//wIAAAADAAIAAAAAAAIAAAADAAIAAAABAAIAAAADAAIAAAACAAIAAAAHAAcAAAACAAEAAAADAAIAAAACAAAAAAADAAIAAAABAAAAAAADAAIAAAAAAAAAAAADAAIAAAD//wAAAAADAAIAAAD+/wAAAAADAAIAAAD+/wEAAAADAAIAAAD//wEAAAADAAIAAAAAAAEAAAADAAIAAAABAAEAAAADAAIAAAACAP//AAAHAAAAAAD9////AAAAAAAAAAD+//3/AAAAAAAAAAD///3/AAADAAIAAAAAAP3/AAADAAIAAAABAP3/AAAHAAAAAAA=")
 tile_set = SubResource("TileSet_vu6ta")
+
+[node name="Timer" type="Timer" parent="." unique_id=237753425]
+
+[node name="naviNode" parent="." unique_id=1011454801 instance=ExtResource("3_ldxsj")]

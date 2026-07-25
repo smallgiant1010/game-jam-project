@@ -9,26 +9,20 @@ public partial class BreakableInteractive : Node2D
 	public delegate void BreakdownEventHandler(Task task);
 	[Signal]
 	public delegate void FixedEventHandler(Task task);
-	public bool isBroken { get; private set; } = false;
+	private Timer timer_;
+	public bool isBroken { get; protected set; } = false;
 	private bool hasSignaled = false;
-	private double currentTime;
 	protected Task assignedTask;
-    public override void _Ready()
+	public override void _Ready()
 	{
-		currentTime = 0f;
+		timer_ = GetNode<Timer>("Timer");
+		timer_.Timeout += OnTimeout;
+		timer_.Start(breakdownDelay);
 	}
-
-    public void Interact()
-    {
-		isBroken = false;
-		hasSignaled = false;
-		EmitSignal("Fixed", (int)assignedTask);
-    }
-    
-    public override void _Process(double delta)
+	
+	private void OnTimeout()
 	{
-		currentTime += delta;
-		if(!isBroken && currentTime >= breakdownDelay)
+		if(!isBroken)
 		{
 			double gacha = Random.Shared.NextDouble() * 100f;
 			if(gacha <= breakdownProbability)
@@ -40,7 +34,18 @@ public partial class BreakableInteractive : Node2D
 					hasSignaled = true;
 				}
 			}
-			currentTime = 0;
+			timer_.Start(breakdownDelay);
 		}
+	}
+
+    public void Interact()
+    {
+		isBroken = false;
+		hasSignaled = false;
+		EmitSignal("Fixed", (int)assignedTask);
+    }
+    
+    public override void _Process(double delta)
+	{
 	}
 }
