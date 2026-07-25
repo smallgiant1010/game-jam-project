@@ -20,7 +20,6 @@ public partial class Enemy : CharacterBody2D
       // GetNode<NavigationAgent2D>("NavigationAgent2D").TargetPosition = goal.GlobalPosition;
       shapecast = GetNodeOrNull<ShapeCast2D>("ShapeCast2D");
       aggro = GetNodeOrNull<Timer>("aggro");
-      getRandNode();
    }
 
    public override void _PhysicsProcess(double delta)
@@ -57,5 +56,6 @@ public partial class Enemy : CharacterBody2D
    public void SetNavNodes(Godot.Collections.Array<Node2D> nodes) //call this when we spawn enemies to assign navNodes
    {
       navNodes = nodes;
+      getRandNode();
    }
 }

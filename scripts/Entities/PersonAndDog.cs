@@ -5,6 +5,8 @@ public partial class PersonAndDog : Customer
 {
 	// Called when the node enters the scene tree for the first time.
 	[Export] int max;
+	[Export] private Timer shopTimer;
+	private bool isPaused = false;
 
    // Called when the node enters the scene tree for the first time.
    public override void _Ready()
@@ -12,17 +14,29 @@ public partial class PersonAndDog : Customer
       GoToRandomNavNode();
    }
 
-   // Called every frame. 'delta' is the elapsed time since the previous frame.
-   public override void _Process(double delta)
+   public override void _PhysicsProcess(double delta)
    {
+      if (isPaused)
+      {
+         Velocity = Vector2.Zero;
+         MoveAndSlide();
+         return;
+      }
+      base._PhysicsProcess(delta);
       if (navi.IsNavigationFinished())
       {
-         GD.Print("Reached: ", currentNavTarget.Name);
          Velocity = Vector2.Zero;
          MoveAndSlide();
 
-         //call interact function from Aisle.cs
-         GoToRandomNavNode();
+         if (state == ShoppingState.Roaming)
+         {
+            GD.Print("Reached: ", currentNavTarget.Name);
+            isPaused = true;
+            shopTimer.Start();
+
+            //pause here for a bit
+         }
+         // else: AtRegister (or transitioning) — just stand still until state changes
       }
       else
       {
@@ -31,6 +45,12 @@ public partial class PersonAndDog : Customer
          Velocity = direction * Speed;
          MoveAndSlide();
       }
+   }
+
+   private void on_timer_timeout()
+   {
+      isPaused = false;
+      if (state == ShoppingState.Roaming) GoToRandomNavNode();
    }
 
    private void _on_buy_zone_entered(Node2D body)
@@ -52,6 +72,7 @@ public partial class PersonAndDog : Customer
          }
          itemsBought += buyNum;
          totalValue += valueBought;
+         numVisited += 1;
       }
    }
 }
