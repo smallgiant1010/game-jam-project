@@ -18,7 +18,6 @@ public partial class Player : CharacterBody2D
    private Mop mop;
 
    private Wrench wrench;
-	[Export] public bool isStunned = false;
 
    private enum toolType{ Mop, Wrench, None }
    private toolType currentTool;
