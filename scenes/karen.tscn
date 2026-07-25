@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://clb7jtnwrlvgo"]
+[gd_scene format=3 uid="uid://7hj4rf1lju64"]
 
-[ext_resource type="Script" uid="uid://dvonvn3gyu17g" path="res://scripts/Entities/Karen.cs" id="2_2ylbg"]
+[ext_resource type="Script" path="res://scripts/Karen.cs" id="2_2ylbg"]
 [ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="2_bhr88"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xayay"]
@@ -8,6 +8,8 @@ size = Vector2(15, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_md0e3"]
 radius = 43.104523
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xayay"]
 
 [node name="karen" type="CharacterBody2D" unique_id=859042563 node_paths=PackedStringArray("goal", "navi", "aoe")]
 script = ExtResource("2_2ylbg")
@@ -40,7 +42,8 @@ target_desired_distance = 3.0
 path_postprocessing = 1
 debug_enabled = true
 
-[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1462810622]
+[node name="RayCast2D" type="ShapeCast2D" parent="." unique_id=2079012054]
+shape = SubResource("CapsuleShape2D_xayay")
 target_position = Vector2(150, 0)
 
 [node name="aggro" type="Timer" parent="." unique_id=142111285]

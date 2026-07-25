@@ -3,7 +3,7 @@ using System;
 
 public enum Day
 {
-	SUNDAY,
+	SUNDAY = 0,
 	MONDAY,
 	TUESDAY,
 	WEDNESDAY,
@@ -16,31 +16,23 @@ public partial class GameManager : Node2D
 {
 	[Export] private float requiredMoney = 1000.0f;
 	[Export] private float TimeTilLevelEndsInMinutes = 5f;
-	public static GameManager Instance;
-	private Day currentDay;
+	[Signal]
+	public delegate void StartGameEventHandler();
+	[Signal]
+	public delegate void EndGameEventHandler();
+	public static GameManager Instance { private set; get; }
+	public Day currentDay { private set; get; }
 	private float currentMoney = 0f;
-	public bool GameStarted = false;
-	public override void _EnterTree()
-	{
-		if (Instance == null)
-		{
-			Instance = this;
-		}
-		else
-		{
-			QueueFree();
-		}
-	}
 
 	public override void _Ready()
 	{
+		Instance = this;
 		currentDay = Day.SUNDAY;
 		DayTimer.Instance.Timeout += OnTimerTimeout;
 	}
 
 	private void OnTimerTimeout()
 	{
-		GameStarted = false;
 		switch(currentDay)
 		{
 			case Day.SATURDAY:
@@ -49,6 +41,7 @@ public partial class GameManager : Node2D
 				break;
 			default:
 				currentDay += 1;
+				SpawnManager.Instance.customerSpawnProbability -= 10;
 				break;
 		}
 	}

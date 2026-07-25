@@ -5,13 +5,14 @@ using System.Runtime.CompilerServices;
 
 public partial class Player : CharacterBody2D
 {
-	private int speed = 500;
+	[Export] public int speed = 500;
 	[Export] public float health = 100; // patience
 	[Export] public float maxHealth = 100; // patience
-
+	[Export] public bool isStunned = false;
 	[Export] public float decay = 1;
+	[Export] public int live = 3;
 	private RayCast2D raycast;
-	private Timer stunTimer;
+	public Timer stunTimer;
 	private Area2D hurtbox;
 
    private Mop mop;
@@ -38,9 +39,6 @@ public partial class Player : CharacterBody2D
 	// 	isStunned = true;
 	// 	hurtbox.SetDeferred("monitoring", false);
 
-	// 	stunTimer.Start();
-	// 	GD.Print(body.Name + " entered");
-	// }
 	private void _on_stun_timer_timeout()
 	{
 		isStunned = false;
@@ -52,13 +50,13 @@ public partial class Player : CharacterBody2D
 		// pause if ur in lounge
 
 		health -= 1 * decay;
-		GD.Print(decay);
+		GD.Print(health);
 	}
 	public override void _Process(double delta)
 	{
 		if (health > maxHealth) health = maxHealth; // health capped
 
-		if (health <= 0) GD.Print("you lost lmao what a loser");
+		if (health <= 0) GD.Print("you lost lmao what a loser"); // transform, ray grows in size and rotates rapidly
 
 		if (Input.IsActionJustPressed("interact"))
 		{
@@ -66,6 +64,8 @@ public partial class Player : CharacterBody2D
 			if (raycast.IsColliding())
 			{
 				var collider = raycast.GetCollider();
+				if (collider is Aisle a) a.Interact(1);
+				// else if (collider is Fridge b) b.
 				GD.Print(collider);
 			}
 		}

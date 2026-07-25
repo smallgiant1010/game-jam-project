@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dvk6o05mvqnye"]
+
+[ext_resource type="Script" uid="uid://gyb56i4ig2ry" path="res://scripts/Managers/SpawnManager.cs" id="1_h6m58"]
+
+[node name="SpawnManager" type="Node2D" unique_id=1742120670]
+script = ExtResource("1_h6m58")
+
+[node name="Timer" type="Timer" parent="." unique_id=845097034]

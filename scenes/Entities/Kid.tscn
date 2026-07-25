@@ -1,23 +1,25 @@
-[gd_scene format=3 uid="uid://8hjwhnb0l4sv"]
+[gd_scene format=3 uid="uid://ca875gurjw5cp"]
 
-[ext_resource type="Script" uid="uid://bs5q1w11uutcl" path="res://scripts/Abstracts/Enemy.cs" id="1_md0e3"]
-[ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="2_4ra3w"]
+[ext_resource type="Script" uid="uid://brarvu0bnjbb3" path="res://scripts/Entities/Kid.cs" id="1_2and3"]
+[ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="2_2and3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xayay"]
-size = Vector2(8, 8)
+size = Vector2(15, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_md0e3"]
 radius = 11.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xayay"]
 
-[node name="enemy" type="CharacterBody2D" unique_id=859042563 node_paths=PackedStringArray("goal", "navi", "aoe")]
+[node name="Kid" type="CharacterBody2D" unique_id=859042563 node_paths=PackedStringArray("spillTime", "goal", "navi", "aoe", "navNodes")]
 collision_layer = 32
 collision_mask = 17
-script = ExtResource("1_md0e3")
+script = ExtResource("1_2and3")
+spillTime = NodePath("spill")
 goal = NodePath("Area2D")
 navi = NodePath("NavigationAgent2D")
 aoe = NodePath("Area2D")
+navNodes = [null, null, null]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1681358200]
 shape = SubResource("RectangleShape2D_xayay")
@@ -26,7 +28,7 @@ shape = SubResource("RectangleShape2D_xayay")
 modulate = Color(0.13725491, 0.043137256, 1, 1)
 position = Vector2(1.9073486e-06, -1.9073486e-06)
 scale = Vector2(0.15625, 0.15625)
-texture = ExtResource("2_4ra3w")
+texture = ExtResource("2_2and3")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1825357227]
 editor_description = "NOT ALL ENEMIES USE THIS, JUST FOR CONVENIENCE"
@@ -45,15 +47,21 @@ path_postprocessing = 1
 debug_enabled = true
 
 [node name="RayCast2D" type="ShapeCast2D" parent="." unique_id=643038667]
+enabled = false
 shape = SubResource("CapsuleShape2D_xayay")
-target_position = Vector2(150, 0)
+target_position = Vector2(0, 0)
 max_results = 1
-collision_mask = 16
+collision_mask = 0
 collide_with_areas = true
 
 [node name="aggro" type="Timer" parent="." unique_id=142111285]
-editor_description = "can also be repurposed for nav
-"
-wait_time = 10.0
+editor_description = "Used as a navi timer, "
+wait_time = 2.0
+autostart = true
+
+[node name="spill" type="Timer" parent="." unique_id=1447638092]
+wait_time = 6.0
+autostart = true
 
 [connection signal="timeout" from="aggro" to="." method="_on_aggro_timeout"]
+[connection signal="timeout" from="spill" to="." method="_on_spill_timeout"]

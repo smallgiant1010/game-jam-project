@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://c3naflgcogi7r"]
+
+[ext_resource type="Script" uid="uid://vlimg52hft0k" path="res://scripts/UIRelated/TaskItem.cs" id="1_eay6v"]
+
+[node name="TaskItem" type="PanelContainer" unique_id=425152343]
+custom_minimum_size = Vector2(0, 100)
+offset_right = 350.0
+offset_bottom = 100.0
+script = ExtResource("1_eay6v")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1185218786]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2074469584]
+layout_mode = 2
+
+[node name="TaskIcon" type="TextureRect" parent="HBoxContainer" unique_id=1517714396]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="TaskName" type="Label" parent="HBoxContainer" unique_id=339598976]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Catch Rat"
