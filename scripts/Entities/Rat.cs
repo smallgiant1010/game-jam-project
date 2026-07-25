@@ -15,6 +15,7 @@ public partial class Rat : Enemy
    public void Caught()
    {
       // SpawnManager.Instance.ChangeSpawnProbability(2);
+      Market.Instance.RemoveEnemy(id);
       QueueFree();
    }
 

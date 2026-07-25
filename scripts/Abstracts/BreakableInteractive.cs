@@ -37,9 +37,9 @@ public partial class BreakableInteractive : Node2D
 				{
 					EmitSignal("Breakdown", (int)assignedTask);
 					hasSignaled = true;
+					timer_.Stop();
 				}
 			}
-			timer_.Start(breakdownDelay);
 		}
 	}
 
@@ -48,6 +48,7 @@ public partial class BreakableInteractive : Node2D
 		isBroken = false;
 		hasSignaled = false;
 		EmitSignal("Fixed", (int)assignedTask);
+		timer_.Start(breakdownDelay);
     }
     
     public override void _Process(double delta)
