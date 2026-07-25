@@ -60,7 +60,7 @@ public partial class Customer : CharacterBody2D
       else if (state == ShoppingState.HeadingToRegister && navi.IsNavigationFinished())
       {
          state = ShoppingState.AtRegister;
-         EmitSignal(SignalName.ReachedRegister, this);
+         EmitSignal("ReachedRegister", this);
       }
       else if (state == ShoppingState.HeadingToExit && navi.IsNavigationFinished())
       {

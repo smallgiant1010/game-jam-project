@@ -7,6 +7,7 @@ public partial class Market : Node
     public static Market Instance { private set; get; }
     public List<Aisle> aisles;
     public List<BreakableInteractive> machines;
+    public List<Register> registers;
     public List<StorageRack> storageRacks;
     private LinkedList<Enemy> enemies;
     private LinkedList<Customer> customers;
@@ -58,6 +59,10 @@ public partial class Market : Node
             else if (node is BreakableInteractive breakableInteractive)
             {
                 machines.Add(breakableInteractive);
+                if(breakableInteractive is Register register)
+                {
+                    registers.Add(register);
+                }
             } else if(node is StorageRack storageRack)
             {
                 storageRacks.Add(storageRack);

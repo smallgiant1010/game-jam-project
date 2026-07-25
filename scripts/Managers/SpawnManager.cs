@@ -137,6 +137,9 @@ public partial class SpawnManager : Node2D
 				LinkedListNode<Customer> id = Market.Instance.AddCustomer(customer);
 				customer.id = id;
 				customer.GlobalPosition = spawnPoint_.GlobalPosition;
+				Register randomRegister = Market.Instance.registers[Random.Shared.Next(0, Market.Instance.registers.Count - 1)];
+				customer.setRegister(randomRegister);
+				customer.ReachedRegister += randomRegister.OnReachedRegister;
 			}
 			else
 			{
