@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://8vtbibak6oeu"]
 
+[ext_resource type="Script" uid="uid://6owo4051ggdv" path="res://scripts/Entities/Coworker.cs" id="1_b1m6s"]
 [ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="2_b1m6s"]
-[ext_resource type="Script" uid="uid://bdte2jlyf3ysq" path="res://Coworker.cs" id="2_mql4m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xayay"]
 size = Vector2(15, 16)
@@ -11,10 +11,11 @@ radius = 11.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xayay"]
 
-[node name="Coworker" type="CharacterBody2D" unique_id=859042563 node_paths=PackedStringArray("goal", "navi", "aoe")]
+[node name="Coworker" type="CharacterBody2D" unique_id=859042563 node_paths=PackedStringArray("checktimer", "goal", "navi", "aoe")]
 collision_layer = 32
 collision_mask = 17
-script = ExtResource("2_mql4m")
+script = ExtResource("1_b1m6s")
+checktimer = NodePath("checkFix")
 goal = NodePath("Area2D")
 navi = NodePath("NavigationAgent2D")
 aoe = NodePath("Area2D")
@@ -55,5 +56,10 @@ collide_with_areas = true
 [node name="aggro" type="Timer" parent="." unique_id=142111285]
 editor_description = "can also be repurposed for nav
 "
+wait_time = 10.0
+autostart = true
+
+[node name="checkFix" type="Timer" parent="." unique_id=1991130347]
 
 [connection signal="timeout" from="aggro" to="." method="_on_aggro_timeout"]
+[connection signal="timeout" from="checkFix" to="." method="_on_check_fix_timeout"]

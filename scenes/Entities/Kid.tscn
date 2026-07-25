@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ca875gurjw5cp"]
 
+[ext_resource type="Script" uid="uid://brarvu0bnjbb3" path="res://scripts/Entities/Kid.cs" id="1_2and3"]
 [ext_resource type="Texture2D" uid="uid://bef2s6ct3plih" path="res://icon.svg" id="2_2and3"]
-[ext_resource type="Script" uid="uid://bmoj6v1ii30xb" path="res://Kid.cs" id="2_udtgr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xayay"]
 size = Vector2(15, 16)
@@ -11,14 +11,15 @@ radius = 11.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xayay"]
 
-[node name="Kid" type="CharacterBody2D" unique_id=859042563 node_paths=PackedStringArray("spillTime", "goal", "navi", "aoe")]
+[node name="Kid" type="CharacterBody2D" unique_id=859042563 node_paths=PackedStringArray("spillTime", "goal", "navi", "aoe", "navNodes")]
 collision_layer = 32
 collision_mask = 17
-script = ExtResource("2_udtgr")
+script = ExtResource("1_2and3")
 spillTime = NodePath("spill")
 goal = NodePath("Area2D")
 navi = NodePath("NavigationAgent2D")
 aoe = NodePath("Area2D")
+navNodes = [null, null, null]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1681358200]
 shape = SubResource("RectangleShape2D_xayay")
