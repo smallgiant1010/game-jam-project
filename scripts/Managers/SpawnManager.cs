@@ -30,7 +30,7 @@ public partial class SpawnManager : Node2D
 
 	public override void _Ready()
 	{
-		entityProbabilitiesPerDay = new(7);
+		entityProbabilitiesPerDay = new();
 		InitializeProbabilitiesList();
 		GameManager.Instance.StartGame += OnStartGame;
 		GameManager.Instance.EndGame += OnEndGame;
@@ -60,69 +60,68 @@ public partial class SpawnManager : Node2D
 
     private void InitializeProbabilitiesList()
     {
-		entityProbabilitiesPerDay[(int)Day.SUNDAY] =
+		entityProbabilitiesPerDay.Add(
 		[
 			new EntityDetails(Entity.RAT, 0),
 			new EntityDetails(Entity.KID, 50),
 			new EntityDetails(Entity.ELDERLY, 50),
 			new EntityDetails(Entity.KAREN, 0),
 			new EntityDetails(Entity.THIEF, 0)
-		];
+		]);
 
-		entityProbabilitiesPerDay[(int)Day.MONDAY] =
+		entityProbabilitiesPerDay.Add(
 		[
 			new EntityDetails(Entity.RAT, 10),
 			new EntityDetails(Entity.KID, 40),
 			new EntityDetails(Entity.ELDERLY, 40),
 			new EntityDetails(Entity.KAREN, 10),
 			new EntityDetails(Entity.THIEF, 0)
-		];
+		]);
 
-		entityProbabilitiesPerDay[(int)Day.TUESDAY] =
+		entityProbabilitiesPerDay.Add(
 		[
 			new EntityDetails(Entity.RAT, 5),
 			new EntityDetails(Entity.KID, 15),
 			new EntityDetails(Entity.ELDERLY, 40),
 			new EntityDetails(Entity.KAREN, 15),
 			new EntityDetails(Entity.THIEF, 5)
-		];
+		]);
 
-		entityProbabilitiesPerDay[(int)Day.WEDNESDAY] =
+		entityProbabilitiesPerDay.Add(
 		[
 			new EntityDetails(Entity.RAT, 10),
 			new EntityDetails(Entity.KID, 10),
 			new EntityDetails(Entity.ELDERLY, 20),
 			new EntityDetails(Entity.KAREN, 40),
 			new EntityDetails(Entity.THIEF, 20)
-		];
+		]);
 
-		entityProbabilitiesPerDay[(int)Day.THURSDAY] =
+		entityProbabilitiesPerDay.Add(
 		[
 			new EntityDetails(Entity.RAT, 5),
 			new EntityDetails(Entity.KID, 5),
 			new EntityDetails(Entity.ELDERLY, 10),
 			new EntityDetails(Entity.KAREN, 40),
 			new EntityDetails(Entity.THIEF, 40)
-		];
+		]);
 
-		entityProbabilitiesPerDay[(int)Day.FRIDAY] =
+		entityProbabilitiesPerDay.Add(
 		[
 			new EntityDetails(Entity.RAT, 20),
 			new EntityDetails(Entity.KID, 20),
 			new EntityDetails(Entity.ELDERLY, 20),
 			new EntityDetails(Entity.KAREN, 20),
 			new EntityDetails(Entity.THIEF, 20)
-		];
+		]);
 
-		entityProbabilitiesPerDay[(int)Day.SATURDAY] =
+		entityProbabilitiesPerDay.Add(
 		[
 			new EntityDetails(Entity.RAT, 20),
 			new EntityDetails(Entity.KID, 10),
 			new EntityDetails(Entity.ELDERLY, 10),
 			new EntityDetails(Entity.KAREN, 40),
 			new EntityDetails(Entity.THIEF, 20)
-		];
-
+		]);
     }
 
 	private void OnTimeout()
